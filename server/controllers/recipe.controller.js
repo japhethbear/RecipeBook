@@ -9,7 +9,7 @@ module.exports.findAllRecipes= (req, res) => {
 
 // Find One Recipe
 module.exports.findOneRecipe = (req, res) => {
-    Recipe.findById(req.params.id)
+    Recipe.findOne({_id:req.params.id})
         .then(oneRecipe => res.json({ recipe: oneRecipe }))
         .catch(err => res.json({ message: 'Something went wrong', error: err }));
 }
