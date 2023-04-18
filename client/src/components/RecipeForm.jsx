@@ -41,11 +41,21 @@ const RecipeForm = () => {
             })
         };
 
+    const logout = () => {
+        axios.post('http://localhost:8000/api/users/logout', {}, {withCredentials: true})
+            .then(res => {
+                console.log(res)
+                navigate('/')})
+            .catch(err => console.log(err));
+    }
+    
+
   return (
     <div>
         <div className='d-flex justify-content-around'>
             <h1>Add My Own Recipe</h1>
             <p><Link to={'/home'} >go back home</Link></p>
+            <button className='btn btn-danger' onClick={logout}>Logout</button>
         </div>
         <form action="" className="col-md-6 mx-auto" onSubmit={handleSubmit}>
             {errors.map((err, index) => <p key={index}>{err}</p>)}

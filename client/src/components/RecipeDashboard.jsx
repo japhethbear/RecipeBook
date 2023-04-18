@@ -26,11 +26,26 @@ const RecipeDashboard = () => {
             .catch(err => console.log(err))
     }
 
+    const logout = () => {
+        axios.post('http://localhost:8000/api/users/logout', {}, {withCredentials: true})
+            .then(res => {
+                console.log(res)
+                navigate('/')})
+            .catch(err => console.log(err));
+    }
+
+    const logoutButtonStyle = {
+        position: 'absolute',
+        top: '10px',
+        right: '10px',
+    };
+
   return (
     <div className='container'>
-        <div className='d-flex justify-content-between mt-4'>
+        <div className='d-flex justify-content-around mt-4'>
             <h1>My Recipe Book</h1>
             <h5><Link to={'/home'} >Home Page</Link></h5>
+            <button className='btn btn-danger' style={logoutButtonStyle} onClick={logout}>Logout</button>
         </div>
         <div className='d-flex justify-content-between mt-4'>
             <button className="btn-secondary" onClick={navigateToRecipeForm}>Add a Recipe</button>

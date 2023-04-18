@@ -66,12 +66,27 @@ const EditRecipe = () => {
                 })
     }
 
+    const logout = () => {
+        axios.post('http://localhost:8000/api/users/logout', {}, {withCredentials: true})
+            .then(res => {
+                console.log(res)
+                navigate('/')})
+            .catch(err => console.log(err));
+    }
+
+    const logoutButtonStyle = {
+        position: 'absolute',
+        top: '10px',
+        right: '10px',
+    };
+
  
   return (
     <div>
-        <div className='d-flex justify-content-around'>
-            <h1 className='mx-auto'>{recipe.recipeName}</h1>
+        <div className='d-flex justify-content-around mt-3'>
+            <h1>{recipe.recipeName}</h1>
             <h5><Link to={'/home'} >Home Page</Link></h5>
+            <button className='btn btn-danger' style={logoutButtonStyle} onClick={logout}>Logout</button>
         </div>
         <form action="" className="col-md-6 mx-auto" onSubmit={handleSubmit}>
             {errors.map((err, index) => <p key={index}>{err}</p>)}
@@ -195,13 +210,13 @@ const EditRecipe = () => {
                 </div>
                 ))}
             </> 
-                : <button className="btn btn-secondary mt-2">Add Ingredient</button> }
+                : <button className="btn btn-secondary mx-2">Add Ingredient</button> }
             </div>
             
-            <button className='btn btn-info mt-2'>Edit Recipe</button>
+            <button className='btn btn-info mx-2 mt-2'>Edit Recipe</button>
 
         </form>
-        <button className="btn btn-secondary mt-2" onClick={() => deleteRecipe(recipe._id)}>Delete</button>
+        <button className="btn btn-danger mt-2" onClick={() => deleteRecipe(recipe._id)}>Delete</button>
 
     </div>
   )
