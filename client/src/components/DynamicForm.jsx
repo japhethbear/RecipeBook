@@ -169,7 +169,7 @@ const RecipeFormTwo = () => {
                         });
                     }}
                     />
-                    {index === recipe.ingredients.length - 1 && (
+                    {/* {index === recipe.ingredients.length - 1 && (
                     <button
                         className="btn btn-primary mt-2"
                         onClick={(e) => {
@@ -182,7 +182,7 @@ const RecipeFormTwo = () => {
                     >
                         Add Ingredient
                     </button>
-                    )}
+                    )} */}
                 </div>
                 ))}
             

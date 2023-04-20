@@ -11,6 +11,8 @@ const LoginForm = () => {
         password: ""
     })
 
+    const [errors, setErrors] = useState([]);
+
     const changeHandler = (e) => {
         setUserInfo({
             ...userInfo,
@@ -25,8 +27,13 @@ const LoginForm = () => {
                 console.log(res)
                 navigate('/home')
             })
-            .catch(err => console.log(err))
-    }
+            .catch(err => {
+                const errorResponse = err.response.data.message;
+                console.log(err)
+
+                setErrors([errorResponse]);
+            })
+        };
 
 
 
@@ -34,7 +41,7 @@ const LoginForm = () => {
     <div className='col-md-4 mt-4'>
         <form onSubmit={submitHandler}>
             <h3 className='text-center'>Login</h3>
-            <div className='form-group'>
+            {errors.map((err, index) => <p key={index}>{err}</p>)}            <div className='form-group'>
                 <label className="form-label">Email</label>
                 <input type="text" className='form-control' name='email' value={userInfo.email} onChange={changeHandler}/>
             </div>

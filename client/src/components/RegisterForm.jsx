@@ -13,6 +13,8 @@ const RegisterForm = () => {
 
     const navigate = useNavigate();
 
+    const [errors, setErrors] = useState([]);
+
     const changeHandler = (e) => {
         setUserInfo({
             ...userInfo,
@@ -27,13 +29,22 @@ const RegisterForm = () => {
                 console.log(res)
                 navigate('/home')
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                const errorResponse = [err.response.data.message];
+                console.log(err)
+                // const errorArr = [];
+                // for (const key of Object.keys(errorResponse)) {
+                //     errorArr.push(errorResponse[key].message)
+                // }   
+                setErrors([errorResponse]);
+            })
     }
 
     return (
         <div className="col-md-4 mt-4">
             <form  onSubmit={submitHandler}>
                 <h3 className='text-center'>Register</h3>
+                {errors.map((err, index) => <p key={index}>{err}</p>)}
                 <div className="form-group">
                     <label className='form-label'>First Name: </label>
                     <input type="text" className='form-control' name='firstName' value={userInfo.firstName} onChange={changeHandler}/>
