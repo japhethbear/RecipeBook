@@ -7,16 +7,16 @@ import DynamicForm from './components/DynamicForm';
 import RegisterForm from './components/RegisterForm';
 import NotFound from './components/NotFound';
 import LoginForm from './components/LoginForm';
-import RegLog from './components/RegLog';
+import HomePage from './components/HomePage';
 
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route element={<RegLog/>} path=""/>
+        <Route element={<HomePage/>} path=""/>
         {/* <Route element={<LoginForm/>} path="login"/> */}
-        <Route element={<LandingPage/>} path="home"/>
+        <Route element={<LandingPage/>} path="home/:id"/>
         <Route element={<RecipeDashboard/>} path="myrecipes"/>
         <Route element={<DynamicForm/>} path="recipe/new"/>
         <Route element={<RecipeData/>} path="recipe/:id"/>

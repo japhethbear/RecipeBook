@@ -1,10 +1,22 @@
-import React, { useEffect }from 'react';
+import React, { useEffect, useState }from 'react';
 import axios from 'axios'
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useParams } from 'react-router-dom';
 
 const LandingPage = () => {
 
     const navigate = useNavigate();
+    const {id} = useParams();
+    const [user, setUser] = useState({});
+    console.log(id)
+
+    useEffect(() => {
+        axios.get(`http://localhost:8000/api/users/${id}`)
+            .then(res => {
+                console.log(res.data)
+                setUser(res.data.user)}
+                )
+            .catch(err => console.log(err));
+    }, []);
     
     const logout = () => {
         axios.post('http://localhost:8000/api/users/logout', {}, {withCredentials: true})
@@ -23,7 +35,7 @@ const LandingPage = () => {
 
     return (
         <>
-        <h1 className='mt-2'>Welcome, Back!</h1>
+        <h1 className='mt-2'>Time to cook, {user.firstName}!</h1>
         <button className='btn btn-danger' style={logoutButtonStyle} onClick={logout}>Logout</button>
         <div className='d-flex justify-content-center align-items-center pl-5'>
             <p className='border-end border-primary border-2 pe-5 mx-5'><Link to={'/myrecipes'} >My Recipes</Link></p>

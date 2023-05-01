@@ -50,5 +50,11 @@ module.exports = {
     logout: async (req, res) => {
         res.clearCookie('userToken');
         res.sendStatus(200);
-    }
+    },
+    getOneUser: (req, res) => {
+        User.findOne({_id:req.params.id})
+        .then(oneUser => res.json({ user: oneUser }))
+        .catch(err => res.json({ message: 'Something went wrong', error: err }));
+}
+      
 }

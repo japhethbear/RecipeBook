@@ -92,7 +92,7 @@ const EditRecipe = () => {
             {errors.map((err, index) => <p key={index}>{err}</p>)}
             <div className='form-group text-center'>
                 <label htmlFor='recipeName'>Recipe Name: </label>
-                <input type="text" value={recipe.recipeName}className='form-control' id='recipeName' name="recipeName" onChange={onChangeHandler}/>
+                <input type="text" value={recipe.recipeName}className='form-control text-center' id='recipeName' name="recipeName" onChange={onChangeHandler}/>
             </div>
             <div className='form-group'>
                 <label htmlFor='recipeMeal'>Recipe Meal: </label>
@@ -158,7 +158,7 @@ const EditRecipe = () => {
                     <label htmlFor={`ingredientName${index}`}>Ingredient {index + 1} Name:</label>
                     <input
                     type="text"
-                    className="form-control"
+                    className="form-control text-center"
                     id={`ingredientName${index}`}
                     name="ingredientName"
                     value={ingredient.ingredientName}
@@ -177,7 +177,7 @@ const EditRecipe = () => {
                     <label htmlFor={`ingredientAmount${index}`}>Ingredient {index + 1} Amount:</label>
                     <input
                     type="text"
-                    className="form-control"
+                    className="form-control text-center"
                     id={`ingredientAmount${index}`}
                     name="ingredientAmount"
                     value={ingredient.ingredientAmount}

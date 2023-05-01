@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 
 const LoginForm = () => {
     
     const navigate = useNavigate();
+    const {id} = useParams();
     const [userInfo, setUserInfo] = useState({
         email: "",
         password: ""
@@ -25,7 +26,7 @@ const LoginForm = () => {
         axios.post('http://localhost:8000/api/users/login', userInfo, {withCredentials: true})
             .then(res => {
                 console.log(res)
-                navigate('/home')
+                navigate(`/home/${res.data.user._id}`)
             })
             .catch(err => {
                 const errorResponse = err.response.data.message;
@@ -47,7 +48,7 @@ const LoginForm = () => {
             </div>
             <div className='form-group'>
                 <label className="form-label">Password</label>
-                <input type="text" className='form-control' name='password' value={userInfo.password} onChange={changeHandler}/>
+                <input type="password" className='form-control' name='password' value={userInfo.password} onChange={changeHandler}/>
             </div>
             <div className='form-group'>
                 <button type='submit' className='btn btn-primary mt-3'>Login</button>

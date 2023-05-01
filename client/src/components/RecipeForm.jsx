@@ -101,7 +101,7 @@ const RecipeForm = () => {
                         setRecipe({ ...recipe, ingredients: ingredientsCopy });
                         }}/>
             </div>
-            <div className="form-group">
+            {/* <div className="form-group">
                 <label htmlFor='ingredientName'>Ingredient Two Name: </label>
                 <input 
                     type="text" 
@@ -156,7 +156,7 @@ const RecipeForm = () => {
                         [e.target.name]: e.target.value};
                         setRecipe({ ...recipe, ingredients: ingredientsCopy });
                         }}/>
-            </div>
+            </div> */}
 
             
             <button className='btn btn-info mt-2'>Add Recipe!</button>

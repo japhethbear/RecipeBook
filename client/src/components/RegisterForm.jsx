@@ -59,11 +59,11 @@ const RegisterForm = () => {
                 </div>
                 <div className="form-group">
                     <label className='form-label'>Password: </label>
-                    <input type="text" className='form-control' name='password' value={userInfo.password} onChange={changeHandler}/>
+                    <input type="password" className='form-control' name='password' value={userInfo.password} onChange={changeHandler}/>
                 </div>
                 <div className="form-group">
                     <label className='form-label'>Confirm Password: </label>
-                    <input type="text" className='form-control' name='confirmPassword' value={userInfo.confirmPassword} onChange={changeHandler}/>
+                    <input type="password" className='form-control' name='confirmPassword' value={userInfo.confirmPassword} onChange={changeHandler}/>
                 </div>
                 <div className="form-group mt-3">
                     <button type="submit" className='btn btn-primary'>Register</button>
