@@ -7,12 +7,10 @@ const LandingPage = () => {
     const navigate = useNavigate();
     const {id} = useParams();
     const [user, setUser] = useState({});
-    console.log(id)
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/users/${id}`)
             .then(res => {
-                console.log(res.data)
                 setUser(res.data.user)}
                 )
             .catch(err => console.log(err));
