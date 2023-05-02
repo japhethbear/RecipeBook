@@ -26,7 +26,7 @@ const RecipeDashboard = () => {
       }, [id]);
 
     const navigateToRecipeForm = () => {
-        navigate('/recipe/new')
+        navigate(`/recipe/new/${id}`)
     }
 
     const logout = () => {
