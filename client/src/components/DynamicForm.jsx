@@ -1,11 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 const RecipeFormTwo = () => {
 
     const navigate = useNavigate();
+    const [user, setUser] = useState({});
+    const { id } = useParams();
+
+    useEffect(() => {
+        axios.get(`http://localhost:8000/api/users/${id}`)
+          .then(res => {
+            console.log(res.data)
+            setUser(res.data.user)}
+            )
+          .catch(err => console.log(err));
+      }, [id]);
 
     const [recipe, setRecipe] = useState({
         recipeName: "",
@@ -64,7 +75,7 @@ const RecipeFormTwo = () => {
     <div>
         <div className='d-flex justify-content-around mt-4'>
             <h1>Add My Own Recipe</h1>
-            <h5><Link to={'/home'} >Home Page</Link></h5>
+            <h5><Link to={`/home/${id}`} >Home Page</Link></h5>
             <button className='btn btn-danger' style={logoutButtonStyle} onClick={logout}>Logout</button>
         </div>
         <form action="" className="col-md-6 mx-auto" onSubmit={handleSubmit}>

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useParams } from 'react-router-dom';
 
 const RecipeDashboard = () => {
     const [recipes, setRecipes] = useState([])
     const navigate = useNavigate();
+    const [user, setUser] = useState({});
+    const { id } = useParams();
 
     useEffect(() => {
         axios.get('http://localhost:8000/api/recipes')
@@ -14,16 +16,17 @@ const RecipeDashboard = () => {
             .catch(err => console.log(err))
     }, [])
 
+    useEffect(() => {
+        axios.get(`http://localhost:8000/api/users/${id}`)
+          .then(res => {
+            console.log(res.data)
+            setUser(res.data.user)}
+            )
+          .catch(err => console.log(err));
+      }, [id]);
+
     const navigateToRecipeForm = () => {
         navigate('/recipe/new')
-    }
-
-    const deleteRecipes = (id) => {
-        axios.delete(`http://localhost:8000/api/recipes/${id}`)
-            .then(res => {
-                setRecipes(recipes.filter(recipe => recipe._id !== id))
-            })
-            .catch(err => console.log(err))
     }
 
     const logout = () => {
@@ -44,7 +47,7 @@ const RecipeDashboard = () => {
     <div className='container'>
         <div className='d-flex justify-content-around mt-4'>
             <h1>My Recipe Book</h1>
-            <h5><Link to={'/home'} >Home Page</Link></h5>
+            <h5><Link to={`/home/${id}`} >Home Page</Link></h5>
             <button className='btn btn-danger' style={logoutButtonStyle} onClick={logout}>Logout</button>
         </div>
         <div className='d-flex justify-content-between mt-4'>
@@ -63,7 +66,7 @@ const RecipeDashboard = () => {
                             <h3 className='d-flex justify-content-start'>{recipe.recipeName}</h3>
                             <div className='d-flex justify-content-between'>
                                 <p>{recipe.recipeMeal}</p>
-                                <p><Link to={`../recipe/${recipe._id}`}>edit</Link></p>
+                                <p><Link to={`../recipe/${id}/${recipe._id}`}>edit</Link></p>
                             </div>
                         </div>
                     )

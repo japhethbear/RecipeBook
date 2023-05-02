@@ -17,9 +17,9 @@ function App() {
         <Route element={<HomePage/>} path=""/>
         {/* <Route element={<LoginForm/>} path="login"/> */}
         <Route element={<LandingPage/>} path="home/:id"/>
-        <Route element={<RecipeDashboard/>} path="myrecipes"/>
-        <Route element={<DynamicForm/>} path="recipe/new"/>
-        <Route element={<RecipeData/>} path="recipe/:id"/>
+        <Route element={<RecipeDashboard/>} path="myrecipes/:id"/>
+        <Route element={<DynamicForm/>} path="recipe/new/:id"/>
+        <Route element={<RecipeData/>} path="recipe/:userId/:recipeId"/>
         <Route element={<NotFound/>} path="*"/>
       </Routes>
       

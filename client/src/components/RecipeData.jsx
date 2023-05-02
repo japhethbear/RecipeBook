@@ -4,19 +4,27 @@ import axios from 'axios';
 
 const EditRecipe = () => {
 
-    const {id} = useParams();
-    console.log(id)
+    const { recipeId, userId } = useParams();
     const navigate = useNavigate();
     const [recipe, setRecipe] = useState({})
     const [recipes, setRecipes] = useState([]);
+    const [user, setUser] = useState({});
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/recipes/${id}`)
-            .then(res => {
-                console.log("Get One Recipe", res.data)
-                setRecipe(res.data.recipe)})
-            .catch(err => console.log(err))
-    }, [])
+        axios.get(`http://localhost:8000/api/recipes/${recipeId}`)
+          .then(res => {
+            console.log("Get One Recipe", res.data)
+            setRecipe(res.data.recipe)})
+          .catch(err => console.log(err))
+      }, [recipeId])
+      
+      useEffect(() => {
+        axios.get(`http://localhost:8000/api/users/${userId}`)
+          .then(res => {
+            setUser(res.data.user)}
+            )
+          .catch(err => console.log(err));
+      }, [userId]);
 
     useEffect(() => {
         axios.get('http://localhost:8000/api/recipes')
@@ -41,7 +49,7 @@ const EditRecipe = () => {
     const [errors, setErrors] = useState([]);
 
     const deleteRecipe = (id) => {
-        axios.delete(`http://localhost:8000/api/recipes/${id}`)
+        axios.delete(`http://localhost:8000/api/recipes/${recipeId}`)
             .then(res => {
                 navigate('/myrecipes')
             })
@@ -50,7 +58,7 @@ const EditRecipe = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-            axios.put(`http://localhost:8000/api/recipes/${id}`, recipe)
+            axios.put(`http://localhost:8000/api/recipes/${recipeId}`, recipe)
                 .then(res => {
                     console.log(res)
                     navigate('/myrecipes')
@@ -84,8 +92,8 @@ const EditRecipe = () => {
   return (
     <div>
         <div className='d-flex justify-content-around mt-3'>
-            <h1>{recipe.recipeName}</h1>
-            <h5><Link to={'/home'} >Home Page</Link></h5>
+            <h1>{recipe.recipeName || 'Recipe Name'}</h1>
+            <h5><Link to={`/home/${userId}`} >Home Page</Link></h5>
             <button className='btn btn-danger' style={logoutButtonStyle} onClick={logout}>Logout</button>
         </div>
         <form action="" className="col-md-6 mx-auto" onSubmit={handleSubmit}>
