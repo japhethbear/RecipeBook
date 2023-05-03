@@ -30,14 +30,11 @@ const RegisterForm = () => {
                 navigate('/home')
             })
             .catch(err => {
-                const errorResponse = [err.response.data.message];
-                console.log(err)
-                // const errorArr = [];
-                // for (const key of Object.keys(errorResponse)) {
-                //     errorArr.push(errorResponse[key].message)
-                // }   
-                setErrors([errorResponse]);
-            })
+                const errorResponse = err.response.data.errors;
+                console.log(err);
+                const errorArr = Object.keys(errorResponse).map(key => errorResponse[key].message);
+                setErrors(errorArr);
+              })
     }
 
     return (

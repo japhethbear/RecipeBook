@@ -7,6 +7,7 @@ const RecipeDashboard = () => {
     const navigate = useNavigate();
     const [user, setUser] = useState({});
     const { id } = useParams();
+    const [selectedMeal, setSelectedMeal] = useState('');
 
     useEffect(() => {
         axios.get('http://localhost:8000/api/recipes')
@@ -52,11 +53,21 @@ const RecipeDashboard = () => {
         </div>
         <div className='d-flex justify-content-between mt-4'>
             <button className="btn-secondary" onClick={navigateToRecipeForm}>Add a Recipe</button>
-            
+        </div>
+        <div className='d-flex align-content-start mt-4'>
+            <label htmlFor="selectedMeal" className='me-2'>Select Meal: </label>
+            <select value={selectedMeal} onChange={(e) => setSelectedMeal(e.target.value)}>
+                <option value="">All</option>
+                <option value="Breakfast">Breakfast</option>
+                <option value="Snack">Snack</option>
+                <option value="Lunch">Lunch</option>
+                <option value="Dinner">Dinner</option>
+            </select>
         </div>
         <br></br>
         <div>
-            {recipes.sort(function(a, b) {
+            {recipes.filter(recipe => selectedMeal === '' || recipe.recipeMeal === selectedMeal)
+            .sort(function(a, b) {
                     if(a.createdAt < b.createdAt) return -1;
                     if(a.createdAt > b.createdAt) return 1;
                     return 0;

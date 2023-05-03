@@ -44,7 +44,7 @@ const RecipeFormTwo = () => {
         axios.post('http://localhost:8000/api/recipes', recipe)
             .then(res => {
                 console.log(res)
-                navigate('/myrecipes')
+                navigate(`/myrecipes/${id}`)
             })
             .catch(err => {
                 const errorResponse = err.response.data.error.errors;
@@ -94,52 +94,6 @@ const RecipeFormTwo = () => {
                     <option value="Snack">Snack</option>
                 </select>
             </div>
-
-            <div className="form-group">
-                <label htmlFor="ingredientName">Ingredient Name:</label>
-                <input
-                    type="text"
-                    className="form-control text-center"
-                    id="ingredientName"
-                    name="ingredientName"
-                    value={currentIngredient.ingredientName}
-                    onChange={(e) => {
-                    setCurrentIngredient({
-                        ...currentIngredient,
-                        ingredientName: e.target.value
-                    });
-                    }}
-                />
-                <label htmlFor="ingredientAmount">Ingredient Amount:</label>
-                <input
-                    type="text"
-                    className="form-control text-center"
-                    id="ingredientAmount"
-                    name="ingredientAmount"
-                    value={currentIngredient.ingredientAmount}
-                    onChange={(e) => {
-                    setCurrentIngredient({
-                        ...currentIngredient,
-                        ingredientAmount: e.target.value
-                    });
-                    }}
-                />
-                <button
-                    className="btn btn-primary mt-2"
-                    onClick={(e) => {
-                    e.preventDefault();
-                    setRecipe({
-                        ...recipe,
-                        ingredients: [...recipe.ingredients, currentIngredient]
-                    });
-                    setCurrentIngredient({
-                        ingredientName: "",
-                        ingredientAmount: ""
-                    });
-                    }}>Add Ingredient
-                </button>
-            </div>
-
             {recipe.ingredients.map((ingredient, index) => (
                 <div key={index} className="form-group">
                     <label htmlFor={`ingredientName${index}`}>Ingredient {index + 1} Name:</label>
@@ -196,6 +150,53 @@ const RecipeFormTwo = () => {
                     )} */}
                 </div>
                 ))}
+
+            <div className="form-group">
+                <label htmlFor="ingredientName">Ingredient Name:</label>
+                <input
+                    type="text"
+                    className="form-control text-center"
+                    id="ingredientName"
+                    name="ingredientName"
+                    value={currentIngredient.ingredientName}
+                    onChange={(e) => {
+                    setCurrentIngredient({
+                        ...currentIngredient,
+                        ingredientName: e.target.value
+                    });
+                    }}
+                />
+                <label htmlFor="ingredientAmount">Ingredient Amount:</label>
+                <input
+                    type="text"
+                    className="form-control text-center"
+                    id="ingredientAmount"
+                    name="ingredientAmount"
+                    value={currentIngredient.ingredientAmount}
+                    onChange={(e) => {
+                    setCurrentIngredient({
+                        ...currentIngredient,
+                        ingredientAmount: e.target.value
+                    });
+                    }}
+                />
+                <button
+                    className="btn btn-primary mt-2"
+                    onClick={(e) => {
+                    e.preventDefault();
+                    setRecipe({
+                        ...recipe,
+                        ingredients: [...recipe.ingredients, currentIngredient]
+                    });
+                    setCurrentIngredient({
+                        ingredientName: "",
+                        ingredientAmount: ""
+                    });
+                    }}>Add Ingredient
+                </button>
+            </div>
+
+            
             
             <button className='btn btn-info mt-2'>Add Recipe!</button>
         </form>
