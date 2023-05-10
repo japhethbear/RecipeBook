@@ -51,7 +51,7 @@ const EditRecipe = () => {
     const deleteRecipe = (id) => {
         axios.delete(`http://localhost:8000/api/recipes/${recipeId}`)
             .then(res => {
-                navigate('/myrecipes')
+                navigate(`/myrecipes/${userId}`)
             })
             .catch(err => console.log(err))
     }
