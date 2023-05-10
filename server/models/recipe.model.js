@@ -28,6 +28,10 @@ const RecipeSchema = new mongoose.Schema({
             minlength: [2, "Amount must be at least 2 characters long"]
         }
     }],
+    instructions: [{
+        type: String,
+        required: [false],
+    }]
 }, {timestamps: true});
 
 module.exports = mongoose.model("Recipe", RecipeSchema);

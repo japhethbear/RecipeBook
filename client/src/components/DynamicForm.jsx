@@ -22,13 +22,16 @@ const RecipeFormTwo = () => {
         recipeName: "",
         recipeMeal: "",
         favorite: false,
-        ingredients: []
+        ingredients: [],
+        instructions: []
       });
 
     const [currentIngredient, setCurrentIngredient] = useState({
         ingredientName: "",
         ingredientAmount: ""
     });
+
+    const [currentInstruction, setCurrentInstruction] = useState('');
     
     const onChangeHandler = (e) => {
         setRecipe({
@@ -36,6 +39,16 @@ const RecipeFormTwo = () => {
         [e.target.name]: e.target.value,
         });
     };
+
+    const addInstruction = () => {
+        if (currentInstruction.trim() !== '') {
+          setRecipe({
+            ...recipe,
+            instructions: [...recipe.instructions, currentInstruction],
+          });
+          setCurrentInstruction('');
+        }
+      };
     
     const [errors, setErrors] = useState([]);
 
@@ -134,20 +147,6 @@ const RecipeFormTwo = () => {
                         });
                     }}
                     />
-                    {/* {index === recipe.ingredients.length - 1 && (
-                    <button
-                        className="btn btn-primary mt-2"
-                        onClick={(e) => {
-                        e.preventDefault();
-                        setCurrentIngredient({
-                            ingredientName: "",
-                            ingredientAmount: ""
-                        });
-                        }}
-                    >
-                        Add Ingredient
-                    </button>
-                    )} */}
                 </div>
                 ))}
 
@@ -195,6 +194,47 @@ const RecipeFormTwo = () => {
                     }}>Add Ingredient
                 </button>
             </div>
+
+            {recipe.instructions.map((instruction, index) => (
+                <div key={index} className="form-group">
+                    <label htmlFor={`instruction${index}`}>Instruction:</label>
+                    <input
+                    type="text"
+                    className="form-control text-center"
+                    id={`instruction${index}`}
+                    name="instruction"
+                    value={instruction}
+                    onChange={(e) => {
+                        const instructionsCopy = [...recipe.instructions];
+                        instructionsCopy[index] = e.target.value;
+                        setRecipe({
+                        ...recipe,
+                        instructions: instructionsCopy
+                        });
+                    }}
+                    />
+                </div>
+                ))}
+
+                <div className="form-group">
+                <label htmlFor="instruction">Instruction:</label>
+                <input
+                    type="text"
+                    className="form-control text-center"
+                    id="instruction"
+                    name="instruction"
+                    value={currentInstruction}
+                    onChange={(e) => setCurrentInstruction(e.target.value)}
+                />
+                </div>
+            <div>
+            <button
+                className="btn btn-primary mt-2"
+                onClick={addInstruction}>
+                Add Instruction
+            </button>
+            </div>
+
 
             
             
