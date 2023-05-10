@@ -77,6 +77,7 @@ const RecipeDashboard = () => {
                             <h3 className='d-flex justify-content-start'>{recipe.recipeName}</h3>
                             <div className='d-flex justify-content-between'>
                                 <p>{recipe.recipeMeal}</p>
+                                <p><Link to={`../recipe/${id}/${recipe._id}/view`}>View</Link></p>
                                 <p><Link to={`../recipe/${id}/${recipe._id}`}>edit</Link></p>
                             </div>
                         </div>
