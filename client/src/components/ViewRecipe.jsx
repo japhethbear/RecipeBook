@@ -56,24 +56,48 @@ const ViewRecipe = () => {
                 <h5><Link to={`/myrecipes/${userId}`} >Back to Recipes</Link></h5>
                 <button className='btn btn-danger' style={logoutButtonStyle} onClick={logout}>Logout</button>
             </div>
-            <div>
-            <table class="table">
-                <thead>
-                    <tr>
-                    <th scope="col">Ingredient</th>
-                    <th scope="col">Amount</th>
-                    </tr>
-                </thead>
-                
-                <tbody>
-                    {recipe.ingredients &&
-                    recipe.ingredients.map((ingredient, index) => (
-                    <tr key={index}>
-                        <td>{ingredient.ingredientName}</td>
-                        <td>{ingredient.ingredientAmount}</td>
-                    </tr>))}
-                </tbody>
-            </table>
+            <div className='d-flex justify-content-around'>
+
+                <div className='table table-responsive m-2'>
+                    <table className="table table-striped table-hover table-bordered caption-top">
+                        <caption>List of Ingredients</caption>
+                        <thead className='table-secondary'>
+                            <tr>
+                            <th scope="col">Ingredient</th>
+                            <th scope="col">Amount</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody className='table table-group-divider'>
+                            {recipe.ingredients &&
+                            recipe.ingredients.map((ingredient, index) => (
+                            <tr key={index}>
+                                <td>{ingredient.ingredientName}</td>
+                                <td>{ingredient.ingredientAmount}</td>
+                            </tr>))}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div className='table table-responsive m-2'>
+                    <table className="table table-striped table-hover table-bordered caption-top">
+                        <caption>List of Instructions</caption>
+                        <thead className='table-secondary'>
+                            <tr>
+                                <th scope="col">Instructions</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody className='table table-group-divider'>
+                            {recipe.instructions &&
+                            recipe.instructions.map((instruction, index) => (
+                            <tr key={index}>
+                                <td>{instruction}</td>
+                            </tr>))}
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
            
         </div>
