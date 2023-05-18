@@ -23,7 +23,8 @@ const RecipeFormTwo = () => {
         recipeMeal: "",
         favorite: false,
         ingredients: [],
-        instructions: []
+        instructions: [],
+        photos: []
       });
 
     const [currentIngredient, setCurrentIngredient] = useState({
@@ -70,13 +71,21 @@ const RecipeFormTwo = () => {
             })
         };
 
-        const logout = () => {
-            axios.post('http://localhost:8000/api/users/logout', {}, {withCredentials: true})
-                .then(res => {
-                    console.log(res)
-                    navigate('/')})
-                .catch(err => console.log(err));
-        }
+    const handleFileUpload = (e) => {
+        const files = Array.from(e.target.files);
+        setRecipe({
+            ...recipe,
+            photos: files,
+        });
+        };
+
+    const logout = () => {
+        axios.post('http://localhost:8000/api/users/logout', {}, {withCredentials: true})
+            .then(res => {
+                console.log(res)
+                navigate('/')})
+            .catch(err => console.log(err));
+    }
 
     const logoutButtonStyle = {
         position: 'absolute',
@@ -233,6 +242,10 @@ const RecipeFormTwo = () => {
                 onClick={addInstruction}>
                 Add Instruction
             </button>
+            </div>
+            <div className="form-group text-center mt-2">
+                <label className='me-2' htmlFor="photos">Photos: </label>
+                <input type="file" id="photos" name="photos" multiple onChange={handleFileUpload} accept="image/*" />
             </div>
 
 

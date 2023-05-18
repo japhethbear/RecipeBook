@@ -31,7 +31,11 @@ const RecipeSchema = new mongoose.Schema({
     instructions: [{
         type: String,
         required: [false],
-    }]
+    }],
+    photos: {
+        type: [String], // Array of photo URLs
+        default: [], // Empty array by default
+      },
 }, {timestamps: true});
 
 module.exports = mongoose.model("Recipe", RecipeSchema);
