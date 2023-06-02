@@ -73,11 +73,18 @@ const RecipeFormTwo = () => {
 
     const handleFileUpload = (e) => {
         const files = Array.from(e.target.files);
-        setRecipe({
-            ...recipe,
-            photos: files,
+        const formData = new FormData();
+
+        files.forEach((file, index) => {
+            formData.append(`photos[${index}]`, file);
         });
-        };
+
+        setRecipe({
+        ...recipe,
+        photos: formData,
+        });
+    };
+    
 
     const logout = () => {
         axios.post('http://localhost:8000/api/users/logout', {}, {withCredentials: true})
@@ -239,7 +246,8 @@ const RecipeFormTwo = () => {
             <div>
             <button
                 className="btn btn-primary mt-2"
-                onClick={addInstruction}>
+                onClick={addInstruction}
+                type='button'>
                 Add Instruction
             </button>
             </div>
