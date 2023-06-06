@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Link, useParams } from 'react-router-dom'
+import DropzoneComponent from './DropzoneComponent';
 
 const RecipeFormTwo = () => {
 
@@ -71,19 +72,16 @@ const RecipeFormTwo = () => {
             })
         };
 
-    const handleFileUpload = (e) => {
-        const files = Array.from(e.target.files);
-        const formData = new FormData();
-
-        files.forEach((file, index) => {
-            formData.append(`photos[${index}]`, file);
-        });
-
-        setRecipe({
-        ...recipe,
-        photos: formData,
-        });
-    };
+    const handleFileDrop = (droppedFiles) => {
+        const updatedFiles = droppedFiles.map(file => Object.assign(file, {
+            preview: URL.createObjectURL(file)
+        }));
+        
+        setRecipe(recipe => ({
+            ...recipe,
+            photos: [...recipe.photos, ...updatedFiles]
+        }));
+        };
     
 
     const logout = () => {
@@ -252,8 +250,8 @@ const RecipeFormTwo = () => {
             </button>
             </div>
             <div className="form-group text-center mt-2">
-                <label className='me-2' htmlFor="photos">Photos: </label>
-                <input type="file" id="photos" name="photos" multiple onChange={handleFileUpload} accept="image/*" />
+                Photos: 
+                <DropzoneComponent handleFileDrop={handleFileDrop} />
             </div>
 
 

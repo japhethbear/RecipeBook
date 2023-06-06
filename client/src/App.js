@@ -4,11 +4,10 @@ import RecipeDashboard from './components/RecipeDashboard';
 import RecipeData from './components/RecipeData'
 import LandingPage from './components/LandingPage';
 import DynamicForm from './components/DynamicForm';
-import RegisterForm from './components/RegisterForm';
 import NotFound from './components/NotFound';
-import LoginForm from './components/LoginForm';
 import HomePage from './components/HomePage';
 import ViewRecipe from './components/ViewRecipe';
+import APITest from './components/APITest';
 
 
 function App() {
@@ -16,13 +15,13 @@ function App() {
     <div className="App">
       <Routes>
         <Route element={<HomePage/>} path=""/>
-        {/* <Route element={<LoginForm/>} path="login"/> */}
         <Route element={<LandingPage/>} path="home/:id"/>
         <Route element={<RecipeDashboard/>} path="myrecipes/:id"/>
         <Route element={<DynamicForm/>} path="recipe/new/:id"/>
         <Route element={<RecipeData/>} path="recipe/:userId/:recipeId"/>
         <Route element={<ViewRecipe/>} path="recipe/:userId/:recipeId/view"/>
         <Route element={<NotFound/>} path="*"/>
+        <Route element={<APITest/>} path="api"/>
       </Routes>
       
     </div>
