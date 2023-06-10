@@ -1,10 +1,6 @@
 # RecipeBook
 
-Never lose a recipe again!
+Digital Recipe Book.
 
-Create a user with login and registration.
-
-Create recipes with ingredients and amounts.
-
-Save recipes to your dashboard.
+Create your own or search for new ones with the use of Spoonacular API!
 

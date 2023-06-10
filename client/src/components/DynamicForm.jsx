@@ -102,6 +102,7 @@ const RecipeFormTwo = () => {
     <div>
         <div className='d-flex justify-content-around mt-4'>
             <h1>Add My Own Recipe</h1>
+            <h5><Link to={`/api/${id}`} >Search for Recipe!</Link></h5>
             <h5><Link to={`/home/${id}`} >Home Page</Link></h5>
             <button className='btn btn-danger' style={logoutButtonStyle} onClick={logout}>Logout</button>
         </div>
