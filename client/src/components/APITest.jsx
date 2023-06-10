@@ -1,51 +1,65 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import SpoonacularApi from 'spoonacular_api';
 
 const ApiTest = () => {
+  const [ingredient1, setIngredient1] = useState('');
+  const [ingredient2, setIngredient2] = useState('');
+  const [ingredient3, setIngredient3] = useState('');
+  const [recipe, setRecipe] = useState(null);
 
-    var SpoonacularApi = require('spoonacular_api');
+  const apiKey = 'd355fd2b45d04cc0947f5ccfdc25dd59';
 
-    var defaultClient = SpoonacularApi.ApiClient.instance;
-    // Configure API key authorization: apiKeyScheme
-    var apiKeyScheme = defaultClient.authentications['apiKeyScheme'];
-    apiKeyScheme.apiKey = "*****************************"
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    apiKeyScheme.apiKeyPrefix['x-api-key'] = "Token"
-    
-    var api = new SpoonacularApi.DefaultApi()
-    var analyzeRecipeRequest = new SpoonacularApi.AnalyzeRecipeRequest(); // {AnalyzeRecipeRequest} Example request body.
-    var opts = {
-      'language': 'en', // {String} The input language, either \"en\" or \"de\".
-      'includeNutrition': false, // {Boolean} Whether nutrition data should be added to correctly parsed ingredients.
-      'includeTaste': false // {Boolean} Whether taste data should be added to correctly parsed ingredients.
-    };
-    var callback = function(error, data, response) {
-      if (error) {
-        console.error(error);
-      } else {
-        console.log('API called successfully. Returned data: ' + data);
-      }
-    };
-    api.analyzeRecipe(analyzeRecipeRequest, opts, callback);
-
-    const [recipe, setRecipe] = useState('')
-
-    useEffect(() => {
-        axios.get('https://api.spoonacular.com/recipes/complexSearch?query=pasta&maxFat=25&number=2&apiKey=d355fd2b45d04cc0947f5ccfdc25dd59')
-            .then(res => {
-                console.log(res.data)
-                setRecipe(res.data)})
-            .catch(err => console.log(err))
-    }, [])
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const ingredients = `${ingredient1},${ingredient2},${ingredient3}`;
+      const response = await axios.get(
+        `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${encodeURIComponent(
+          ingredients
+        )}&number=1&apiKey=${apiKey}`
+      );
+      const data = response.data;
+      setRecipe(data);
+    } catch (error) {
+      console.log(error)
+    }
+  };
 
   return (
     <>
       <div>ApiTest</div>
-      <h1>{recipe && recipe.data}</h1>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="ingredient1">Ingredient 1:</label>
+        <input
+          type="text"
+          id="ingredient1"
+          value={ingredient1}
+          onChange={(e) => setIngredient1(e.target.value)}
+        />
+        <label htmlFor="ingredient2">Ingredient 2:</label>
+        <input
+          type="text"
+          id="ingredient2"
+          value={ingredient2}
+          onChange={(e) => setIngredient2(e.target.value)}
+        />
+        <label htmlFor="ingredient3">Ingredient 3:</label>
+        <input
+          type="text"
+          id="ingredient3"
+          value={ingredient3}
+          onChange={(e) => setIngredient3(e.target.value)}
+        />
+        <button type="submit">Search</button>
+      </form>
+      {recipe && (
+        <div>
+          <h1>{recipe[0].title}</h1>
+          <img src={recipe[0].image} alt={recipe[0].title} />
+        </div>
+      )}
     </>
+  );
+};
 
-  )
-}
-
-export default ApiTest
+export default ApiTest;
