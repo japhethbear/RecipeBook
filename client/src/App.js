@@ -21,7 +21,7 @@ function App() {
         <Route element={<RecipeData/>} path="recipe/:userId/:recipeId"/>
         <Route element={<ViewRecipe/>} path="recipe/:userId/:recipeId/view"/>
         <Route element={<NotFound/>} path="*"/>
-        <Route element={<APITest/>} path="api/:userId"/>
+        <Route element={<APITest/>} path="api/:id"/>
       </Routes>
       
     </div>

@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useParams, useNavigate } from 'react-router-dom'
 
 const ApiTest = () => {
   
   const { id } = useParams();
+  const [user, setUser] = useState({});
   const navigate = useNavigate();
 
   const [ingredient1, setIngredient1] = useState('');
@@ -12,6 +13,15 @@ const ApiTest = () => {
   const [ingredient3, setIngredient3] = useState('');
   const [number, setNumber] = useState(1); // Default value is 1
   const [recipe, setRecipe] = useState(null);
+
+  useEffect(() => {
+    axios.get(`http://localhost:8000/api/users/${id}`)
+      .then(res => {
+        console.log(res.data)
+        setUser(res.data.user)}
+        )
+      .catch(err => console.log(err));
+  }, [id]);
 
   const apiKey = 'd355fd2b45d04cc0947f5ccfdc25dd59';
 
@@ -64,7 +74,7 @@ const ApiTest = () => {
               <label htmlFor="ingredient1">Ingredient 1:</label>
               <input
                 type="text"
-                className='form-control'
+                className='form-control text-center'
                 id="ingredient1"
                 value={ingredient1}
                 onChange={(e) => setIngredient1(e.target.value)}
@@ -74,7 +84,7 @@ const ApiTest = () => {
               <label htmlFor="ingredient2">Ingredient 2:</label>
               <input
                 type="text"
-                className='form-control'
+                className='form-control text-center'
                 id="ingredient2"
                 value={ingredient2}
                 onChange={(e) => setIngredient2(e.target.value)}
@@ -84,7 +94,7 @@ const ApiTest = () => {
               <label htmlFor="ingredient3">Ingredient 3:</label>
               <input
                 type="text"
-                className='form-control'
+                className='form-control text-center'
                 id="ingredient3"
                 value={ingredient3}
                 onChange={(e) => setIngredient3(e.target.value)}
@@ -94,7 +104,7 @@ const ApiTest = () => {
               <label htmlFor="number">Number of recipes (1-5):</label>
               <input
                 type="number"
-                className='form-control'
+                className='form-control text-center'
                 id="number"
                 min="1"
                 max="5"
