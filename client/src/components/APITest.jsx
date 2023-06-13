@@ -9,8 +9,10 @@ const ApiTest = () => {
 
   const [ingredients, setIngredients] = useState([]);
   const [number, setNumber] = useState(1); // Default value is 1
-  const [recipe, setRecipe] = useState(null);
+  const [recipes, setRecipes] = useState([]);
   const [currentIngredient, setCurrentIngredient] = useState('');
+  const [recipeInfo, setRecipeInfo] = useState(null);
+
 
 
   useEffect(() => {
@@ -36,26 +38,10 @@ const ApiTest = () => {
       );
       const data = response.data;
       console.log(data);
-      setRecipe(data);
+      setRecipes(data);
     } catch (error) {
       console.log(error);
     }
-  };
-
-  const logout = () => {
-    axios
-      .post('http://localhost:8000/api/users/logout', {}, { withCredentials: true })
-      .then((res) => {
-        console.log(res);
-        navigate('/');
-      })
-      .catch((err) => console.log(err));
-  };
-
-  const logoutButtonStyle = {
-    position: 'absolute',
-    top: '10px',
-    right: '10px',
   };
 
   const handleCurrentIngredientChange = (e) => {
@@ -76,10 +62,40 @@ const ApiTest = () => {
     setIngredients(updatedIngredients);
   };
 
+  const handleShowDetails = async (recipeId) => {
+    try {
+      const response = await axios.get(
+        `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${apiKey}`
+      );
+      const data = response.data;
+      console.log(data);
+      setRecipeInfo(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const logout = () => {
+    axios
+      .post('http://localhost:8000/api/users/logout', {}, { withCredentials: true })
+      .then((res) => {
+        console.log(res);
+        navigate('/');
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const logoutButtonStyle = {
+    position: 'absolute',
+    top: '10px',
+    right: '10px',
+  };
+  
+
   return (
     <>
       <div>
-        <h1>ApiTest</h1>
+        <h1>Search for Recipe!</h1>
         <button className="btn btn-danger" style={logoutButtonStyle} onClick={logout}>
           Logout
         </button>
@@ -148,12 +164,36 @@ const ApiTest = () => {
         </div>
       </div>
 
-      {recipe && (
-        <div>
-          <h1>{recipe[0].title}</h1>
-          <img src={recipe[0].image} alt={recipe[0].title} />
+      {recipes.map((recipe, index) => (
+        <div key={index}>
+          <h1>{recipe.title.replace(/\b\w/g, (char) => char.toUpperCase())}</h1>
+          <img src={recipe.image} alt={recipe.title} />
+          <button onClick={() => handleShowDetails(recipe.id)} className='mx-2'>Details</button>
+          {recipeInfo && recipeInfo.id === recipe.id && (
+            <div>
+              <h3 style={{ fontWeight: 'bold' }}>Preparation Time:</h3>
+              <p>{recipeInfo.readyInMinutes} minutes</p>
+              <h3 style={{ fontWeight: 'bold' }}>Servings:</h3>
+              <p>{recipeInfo.servings}</p>
+              <h3 style={{ fontWeight: 'bold' }}>Ingredients:</h3>
+              <ul style={{ listStyleType: 'none' }}>
+                {recipeInfo.extendedIngredients.map((ingredient, index) => (
+                  <li key={index}>{ingredient.original}</li>
+                ))}
+              </ul>
+              <h3 style={{ fontWeight: 'bold' }}>Instructions:</h3>
+              <ol style={{ listStyleType: 'none' }}>
+                {recipeInfo.analyzedInstructions.map((instruction, index) => (
+                  instruction.steps.map((step, stepIndex) => (
+                    <li key={stepIndex}>{step.number}. {step.step}</li>
+                  ))
+                ))}
+              </ol>
+            </div>
+            
+            )}
         </div>
-      )}
+      ))}
 
     {ingredients.length > 0 && (
       <div>
