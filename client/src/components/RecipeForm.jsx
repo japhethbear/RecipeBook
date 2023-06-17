@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Link, useParams } from 'react-router-dom'
 import DropzoneComponent from './DropzoneComponent';
 
-const RecipeFormTwo = () => {
+const RecipeForm = () => {
 
     const navigate = useNavigate();
     const [user, setUser] = useState({});
@@ -263,4 +263,4 @@ const RecipeFormTwo = () => {
     </div>
   )};
 
-export default RecipeFormTwo
+export default RecipeForm

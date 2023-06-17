@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useParams, useNavigate } from 'react-router-dom';
+import RecipeForm from './RecipeForm';
 
 const ApiTest = () => {
   const { id } = useParams();
@@ -8,12 +9,20 @@ const ApiTest = () => {
   const navigate = useNavigate();
 
   const [ingredients, setIngredients] = useState([]);
-  const [number, setNumber] = useState(1); // Default value is 1
+  const [number, setNumber] = useState(1);
   const [recipes, setRecipes] = useState([]);
   const [currentIngredient, setCurrentIngredient] = useState('');
   const [recipeInfo, setRecipeInfo] = useState(null);
+  const [errors, setErrors] = useState([]);
 
-
+  const [recipe, setRecipe] = useState({
+    recipeName: '',
+    recipeMeal: '',
+    favorite: false,
+    ingredients: [],
+    instructions: [],
+    photos: [],
+  });
 
   useEffect(() => {
     axios
@@ -51,28 +60,78 @@ const ApiTest = () => {
   const handleAddIngredient = () => {
     if (currentIngredient.trim() !== '') {
       setIngredients([...ingredients, currentIngredient]);
-      console.log(ingredients)
-      setCurrentIngredient(''); // Show ingredient list when an ingredient is added
+      console.log(ingredients);
+      setCurrentIngredient('');
     }
   };
-  
+
   const handleRemoveIngredient = (index) => {
     const updatedIngredients = [...ingredients];
     updatedIngredients.splice(index, 1);
     setIngredients(updatedIngredients);
   };
 
-  const handleShowDetails = async (recipeId) => {
-    try {
-      const response = await axios.get(
-        `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${apiKey}`
-      );
-      const data = response.data;
-      console.log(data);
-      setRecipeInfo(data);
-    } catch (error) {
-      console.log(error);
+  const handleToggleDetails = async (recipeId) => {
+    if (recipeInfo && recipeInfo.id === recipeId) {
+      setRecipeInfo(null);
+    } else {
+      try {
+        const response = await axios.get(
+          `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${apiKey}`
+        );
+        const data = response.data;
+        console.log(data);
+        setRecipeInfo(data);
+      } catch (error) {
+        console.log(error);
+      }
     }
+  };
+
+  const handleRecipeSelection = (recipe) => {
+    const dishTypes = recipe.dishTypes || [];
+    const mealType =
+      dishTypes.includes('breakfast')
+        ? 'breakfast'
+        : dishTypes.includes('lunch')
+        ? 'lunch'
+        : dishTypes.includes('dinner')
+        ? 'dinner'
+        : dishTypes.includes('snack')
+        ? 'snack'
+        : 'lunch';
+  
+    const ingredients = recipe.extendedIngredients ? recipe.extendedIngredients.map((ingredient) => ingredient.original) : [];
+    const instructions = recipe.analyzedInstructions && recipe.analyzedInstructions.length > 0 ? recipe.analyzedInstructions[0].steps.map((step) => step.step) : [];
+  
+    setRecipe((prevRecipe) => ({
+      ...prevRecipe,
+      recipeName: recipe.title,
+      recipeMeal: mealType,
+      ingredients,
+      instructions,
+      photos: [recipe.image],
+    }));
+  };
+  
+
+  const submitRecipe = (e) => {
+    e.preventDefault();
+    axios
+      .post('http://localhost:8000/api/recipes', recipe)
+      .then((res) => {
+        console.log(res);
+        navigate(`/myrecipes/${id}`);
+      })
+      .catch((err) => {
+        const errorResponse = err.response.data.error.errors;
+        console.log(err);
+        const errorArr = [];
+        for (const key of Object.keys(errorResponse)) {
+          errorArr.push(errorResponse[key].message);
+        }
+        setErrors(errorArr);
+      });
   };
 
   const logout = () => {
@@ -90,7 +149,6 @@ const ApiTest = () => {
     top: '10px',
     right: '10px',
   };
-  
 
   return (
     <>
@@ -108,22 +166,21 @@ const ApiTest = () => {
           <Link to={`/home/${id}`}>Home Page</Link>
         </h5>
       </div>
-      <div className='d-flex'>
-
+      <div className="d-flex">
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-md-6">
               <form onSubmit={handleSubmit}>
-                  <div className="form-group">
-                    <label htmlFor={ingredients}>Ingredient:</label>
-                    <input
-                      type="text"
-                      className="form-control text-center"
-                      id={currentIngredient}
-                      value={currentIngredient}
-                      onChange={handleCurrentIngredientChange}
-                    />
-                  </div>
+                <div className="form-group">
+                  <label htmlFor={ingredients}>Ingredient:</label>
+                  <input
+                    type="text"
+                    className="form-control text-center"
+                    id={currentIngredient}
+                    value={currentIngredient}
+                    onChange={handleCurrentIngredientChange}
+                  />
+                </div>
                 <button
                   type="button"
                   className="btn btn-sm btn-primary mb-4 mt-2"
@@ -154,67 +211,91 @@ const ApiTest = () => {
           <div className="row justify-content-center">
             <div className="col-md-6">
               <h3>Instructions:</h3>
-              <p>To search for recipe by ingredients:</p>
+              <p>To search for a recipe by ingredients:</p>
               <p>1. Enter your desired ingredient in the ingredient input box.</p>
-              <p>2. Click the add ingredient button to save that ingredient for your search and add more if desired. </p>
-              <p>3. The ingredients that you will be searching for will populate below.</p>
-              <p>4. You will have an empty ingredient input box after you have clicked add ingredient for the last time. This is okay. Only the ingredients populated at the bottom will be contained in the search. </p>
+              <p>2. Click the "Add Ingredient" button to add the ingredient to the list.</p>
+              <p>
+                3. Specify the number of recipes you want to retrieve (between 1 and 5) using
+                the number input box.
+              </p>
+              <p>4. Click the "Search for Recipe" button to fetch recipes.</p>
             </div>
           </div>
         </div>
       </div>
-
-      {recipes.map((recipe, index) => (
-        <div key={index}>
-          <h1>{recipe.title.replace(/\b\w/g, (char) => char.toUpperCase())}</h1>
-          <img src={recipe.image} alt={recipe.title} />
-          <button onClick={() => handleShowDetails(recipe.id)} className='mx-2'>Details</button>
-          {recipeInfo && recipeInfo.id === recipe.id && (
-            <div>
-              <h3 style={{ fontWeight: 'bold' }}>Preparation Time:</h3>
-              <p>{recipeInfo.readyInMinutes} minutes</p>
-              <h3 style={{ fontWeight: 'bold' }}>Servings:</h3>
-              <p>{recipeInfo.servings}</p>
-              <h3 style={{ fontWeight: 'bold' }}>Ingredients:</h3>
-              <ul style={{ listStyleType: 'none' }}>
-                {recipeInfo.extendedIngredients.map((ingredient, index) => (
-                  <li key={index}>{ingredient.original}</li>
-                ))}
-              </ul>
-              <h3 style={{ fontWeight: 'bold' }}>Instructions:</h3>
-              <ol style={{ listStyleType: 'none' }}>
-                {recipeInfo.analyzedInstructions.map((instruction, index) => (
-                  instruction.steps.map((step, stepIndex) => (
-                    <li key={stepIndex}>{step.number}. {step.step}</li>
-                  ))
-                ))}
-              </ol>
-            </div>
-            
-            )}
-        </div>
-      ))}
-
-    {ingredients.length > 0 && (
-      <div>
-        <h3>Ingredients:</h3>
-        <ul style={{ listStylePosition: 'inside' }}>
-          {ingredients.map((ingredient, index) => (
-            <li key={index} className='mb-1'>
-              {ingredient}
-              <button
-                type='button'
-                className='btn btn-sm btn-danger mx-2'
-                style={{ fontSize: '0.8rem', padding: '0.2rem 0.5rem' }}
-                onClick={() => handleRemoveIngredient(index)}
-              >
-                Remove Ingredient
-              </button>
+      <div className="d-flex justify-content-around mt-4 mb-4">
+        <div>
+          <h5>My Ingredients:</h5>
+          <ul className="list-group">
+            {ingredients.map((ingredient, index) => (
+              <li className="list-group-item" key={index}>
+                {ingredient}
+                <button
+                  type="button"
+                  className="btn btn-sm btn-danger float-right mx-2"
+                  onClick={() => handleRemoveIngredient(index)}
+                >
+                  Remove
+                </button>
               </li>
-          ))}
-        </ul>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h5>Recipes:</h5>
+          <ul className="list-group">
+            {recipes.map((recipe) => (
+              <li className="list-group-item" key={recipe.id}>
+                <div className="d-flex justify-content-between">
+                  <h6>{recipe.title}</h6>
+                  <button
+                    type="button"
+                    className="btn btn-sm btn-primary mx-2"
+                    onClick={() => handleToggleDetails(recipe.id)}
+                  >
+                    {recipeInfo && recipeInfo.id === recipe.id ? 'Hide Details' : 'Show Details'}
+                  </button>
+                </div>
+                {recipeInfo && recipeInfo.id === recipe.id && (
+                  <div>
+                  <h3 style={{ fontWeight: 'bold' }}>Preparation Time:</h3>
+                  <p>{recipeInfo.readyInMinutes} minutes</p>
+                  <h3 style={{ fontWeight: 'bold' }}>Servings:</h3>
+                  <p>{recipeInfo.servings}</p>
+                  <h3 style={{ fontWeight: 'bold' }}>Ingredients:</h3>
+                  <ul style={{ listStyleType: 'none' }}>
+                    {recipeInfo.extendedIngredients.map((ingredient, index) => (
+                      <li key={index}>{ingredient.original}</li>
+                    ))}
+                  </ul>
+                  <h3 style={{ fontWeight: 'bold' }}>Instructions:</h3>
+                  <ol style={{ listStyleType: 'none' }}>
+                    {recipeInfo.analyzedInstructions.map((instruction, index) => (
+                      instruction.steps.map((step, stepIndex) => (
+                        <li key={stepIndex}>{step.number}. {step.step.replace(/\.(\w)/g, '. $1')}</li>
+                        ))
+                    ))}
+                  </ol>
+                </div>
+                )}
+                <button
+                  type="button"
+                  className="btn btn-sm btn-success mt-2"
+                  onClick={() => handleRecipeSelection(recipe)}
+                >
+                  Select Recipe
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-    )}
+      <RecipeForm
+        recipe={recipe}
+        setRecipe={setRecipe}
+        submitRecipe={submitRecipe}
+        errors={errors}
+      />
     </>
   );
 };
