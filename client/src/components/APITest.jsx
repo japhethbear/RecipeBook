@@ -34,7 +34,7 @@ const ApiTest = () => {
       .catch((err) => console.log(err));
   }, [id]);
 
-  const apiKey = 'd355fd2b45d04cc0947f5ccfdc25dd59';
+  const apiKey = '33edc2a64deb45a5b498c6db9bc4dc33';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -246,7 +246,7 @@ const ApiTest = () => {
           <ul className="list-group">
             {recipes.map((recipe) => (
               <li className="list-group-item" key={recipe.id}>
-                <div className="d-flex justify-content-between">
+                <div className="d-flex justify-content-between mb-2 align-items-center">
                   <h6>{recipe.title}</h6>
                   <button
                     type="button"
@@ -256,6 +256,8 @@ const ApiTest = () => {
                     {recipeInfo && recipeInfo.id === recipe.id ? 'Hide Details' : 'Show Details'}
                   </button>
                 </div>
+                <img className='img-thumbnail'src={recipe.image} alt={recipe.title || 'Recipe Image'} style={{width: '175px'}}/>
+
                 {recipeInfo && recipeInfo.id === recipe.id && (
                   <div>
                   <h3 style={{ fontWeight: 'bold' }}>Preparation Time:</h3>
@@ -278,6 +280,7 @@ const ApiTest = () => {
                   </ol>
                 </div>
                 )}
+                <div>
                 <button
                   type="button"
                   className="btn btn-sm btn-success mt-2"
@@ -285,17 +288,19 @@ const ApiTest = () => {
                 >
                   Select Recipe
                 </button>
+
+                </div>
               </li>
             ))}
           </ul>
         </div>
       </div>
-      <RecipeForm
+      {/* <RecipeForm
         recipe={recipe}
         setRecipe={setRecipe}
         submitRecipe={submitRecipe}
         errors={errors}
-      />
+      /> */}
     </>
   );
 };
