@@ -10,6 +10,8 @@ const ApiTest = () => {
 
   const [ingredients, setIngredients] = useState([]);
   const [number, setNumber] = useState(1);
+  const [multiplier, setMultiplier] = useState(1); // New state for serving size multiplier
+
   const [recipes, setRecipes] = useState([]);
   const [currentIngredient, setCurrentIngredient] = useState('');
   const [recipeInfo, setRecipeInfo] = useState(null);
@@ -150,6 +152,13 @@ const ApiTest = () => {
     right: '10px',
   };
 
+    // Function to handle serving size multiplier
+    const handleMultiplier = (multiplier) => {
+      setMultiplier(multiplier);
+      setNumber(1); // Reset number of recipes to 1 when changing the serving size
+    };
+  
+
   return (
     <>
       <div>
@@ -199,6 +208,32 @@ const ApiTest = () => {
                     value={number}
                     onChange={(e) => setNumber(parseInt(e.target.value))}
                   />
+                </div>
+                <div className="form-group mt-2">
+                  <label htmlFor="multiplier">Serving size multiplier:</label>
+                  <div>
+                    <button
+                      className={`btn btn-sm ${multiplier === 1 ? 'btn-primary' : 'btn-outline-primary'}`}
+                      onClick={() => handleMultiplier(1)}
+                      disabled={multiplier === 1}
+                    >
+                      1x
+                    </button>
+                    <button
+                      className={`btn btn-sm ${multiplier === 2 ? 'btn-primary' : 'btn-outline-primary'}`}
+                      onClick={() => handleMultiplier(2)}
+                      disabled={multiplier === 2}
+                    >
+                      2x
+                    </button>
+                    <button
+                      className={`btn btn-sm ${multiplier === 3 ? 'btn-primary' : 'btn-outline-primary'}`}
+                      onClick={() => handleMultiplier(3)}
+                      disabled={multiplier === 3}
+                    >
+                      3x
+                    </button>
+                  </div>
                 </div>
                 <button className="btn btn-primary mt-4" type="submit">
                   Search for Recipe
@@ -263,11 +298,13 @@ const ApiTest = () => {
                   <h3 style={{ fontWeight: 'bold' }}>Preparation Time:</h3>
                   <p>{recipeInfo.readyInMinutes} minutes</p>
                   <h3 style={{ fontWeight: 'bold' }}>Servings:</h3>
-                  <p>{recipeInfo.servings}</p>
+                  <p>{recipeInfo.servings * multiplier}</p>
                   <h3 style={{ fontWeight: 'bold' }}>Ingredients:</h3>
                   <ul style={{ listStyleType: 'none' }}>
-                    {recipeInfo.extendedIngredients.map((ingredient, index) => (
-                      <li key={index}>{ingredient.original}</li>
+                    {recipeInfo.extendedIngredients.map((ingredient) => (
+                      <li key={ingredient.id}>
+                        {ingredient.amount * multiplier} {ingredient.unit} {ingredient.name}
+                      </li>
                     ))}
                   </ul>
                   <h3 style={{ fontWeight: 'bold' }}>Instructions:</h3>
