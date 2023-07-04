@@ -17,6 +17,20 @@ const ApiTest = () => {
   const [recipeInfo, setRecipeInfo] = useState(null);
   const [errors, setErrors] = useState([]);
 
+  const [apiKey, setApiKey] = useState('');
+
+  useEffect(() => {
+    // Fetch the API key from the server
+    axios.get('/api/apiKey')
+      .then(response => {
+        const apiKey = response.data.apiKey;
+        setApiKey(apiKey);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
+
   const [recipe, setRecipe] = useState({
     recipeName: '',
     recipeMeal: '',
@@ -35,8 +49,6 @@ const ApiTest = () => {
       })
       .catch((err) => console.log(err));
   }, [id]);
-
-  const apiKey = process.env.REACT_APP_API_KEY;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -334,13 +346,13 @@ const ApiTest = () => {
           </ul>
         </div>
       </div>
-      <RecipeForm
+      {/* <RecipeForm
         recipe={recipe}
         setRecipe={setRecipe}
         submitRecipe={submitRecipe}
         errors={errors}
         handleRecipeSelection={handleRecipeSelection}
-      />
+      /> */}
     </>
   );
 };
