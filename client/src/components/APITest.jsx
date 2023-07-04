@@ -36,7 +36,7 @@ const ApiTest = () => {
       .catch((err) => console.log(err));
   }, [id]);
 
-  const apiKey = '33edc2a64deb45a5b498c6db9bc4dc33';
+  const apiKey = process.env.REACT_APP_API_KEY;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -91,6 +91,8 @@ const ApiTest = () => {
   };
 
   const handleRecipeSelection = (recipe) => {
+    console.log('Selected Recipe:', recipe);
+
     const dishTypes = recipe.dishTypes || [];
     const mealType =
       dishTypes.includes('breakfast')
@@ -332,12 +334,13 @@ const ApiTest = () => {
           </ul>
         </div>
       </div>
-      {/* <RecipeForm
+      <RecipeForm
         recipe={recipe}
         setRecipe={setRecipe}
         submitRecipe={submitRecipe}
         errors={errors}
-      /> */}
+        handleRecipeSelection={handleRecipeSelection}
+      />
     </>
   );
 };
