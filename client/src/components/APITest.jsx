@@ -17,20 +17,6 @@ const ApiTest = () => {
   const [recipeInfo, setRecipeInfo] = useState(null);
   const [errors, setErrors] = useState([]);
 
-  const [apiKey, setApiKey] = useState('');
-
-  useEffect(() => {
-    // Fetch the API key from the server
-    axios.get('/api/apiKey')
-      .then(response => {
-        const apiKey = response.data.apiKey;
-        setApiKey(apiKey);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }, []);
-
   const [recipe, setRecipe] = useState({
     recipeName: '',
     recipeMeal: '',
@@ -40,11 +26,12 @@ const ApiTest = () => {
     photos: [],
   });
 
+  const apiKey = '0de1ff1e8039475d937fabae43c74b79'
+
   useEffect(() => {
     axios
       .get(`http://localhost:8000/api/users/${id}`)
       .then((res) => {
-        console.log(res.data);
         setUser(res.data.user);
       })
       .catch((err) => console.log(err));
@@ -74,7 +61,6 @@ const ApiTest = () => {
   const handleAddIngredient = () => {
     if (currentIngredient.trim() !== '') {
       setIngredients([...ingredients, currentIngredient]);
-      console.log(ingredients);
       setCurrentIngredient('');
     }
   };

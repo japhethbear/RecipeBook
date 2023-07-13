@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const app = express();
@@ -18,12 +19,10 @@ app.use(cors({
 const port = 8000;
 
 app.get('/api/apiKey', (req, res) => {
-    const apiKey = process.env.API_KEY; // Access the API key from environment variables
-    res.json({ apiKey });
+    const apiKey = process.env.REACT_APP_API_KEY; // Access the API key from environment variables
+    res.send(apiKey);
   });
-  
 
-require('dotenv').config();
 
 require('./config/mongoose.config');
 

@@ -13,7 +13,6 @@ const RecipeForm = () => {
     useEffect(() => {
         axios.get(`http://localhost:8000/api/users/${id}`)
           .then(res => {
-            console.log(res.data)
             setUser(res.data.user)}
             )
           .catch(err => console.log(err));
