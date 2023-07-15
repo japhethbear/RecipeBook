@@ -28,11 +28,27 @@ app.get('/api/recipes/search', async (req, res) => {
     const response = await axios.get(
       `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${encodeURIComponent(
         ingredientsQuery
-      )}&number=${number}&addRecipeNutrition=true&addRecipeInformation=true&apiKey=0de1ff1e8039475d937fabae43c74b79`
+      )}&number=${number}&addRecipeNutrition=true&addRecipeInformation=true&apiKey=${process.env.REACT_APP_API_KEY}}`
     );
 
     const recipes = response.data;
     res.json(recipes);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'An error occurred' });
+  }
+});
+
+app.get('/api/recipes/:id/information', async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const response = await axios.get(
+      `https://api.spoonacular.com/recipes/${id}/information?apiKey=${process.env.REACT_APP_API_KEY}`
+    );
+
+    const recipeInfo = response.data;
+    res.json(recipeInfo);
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: 'An error occurred' });

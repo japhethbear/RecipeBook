@@ -26,8 +26,6 @@ const ApiTest = () => {
     photos: [],
   });
 
-  const apiKey = '0de1ff1e8039475d937fabae43c74b79'
-
   useEffect(() => {
     axios
       .get(`http://localhost:8000/api/users/${id}`)
@@ -54,23 +52,6 @@ const ApiTest = () => {
     }
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const ingredientsQuery = ingredients.join(',');
-  //     const response = await axios.get(
-  //       `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${encodeURIComponent(
-  //         ingredientsQuery
-  //       )}&number=${number}&addRecipeNutrition=true&addRecipeInformation=true&apiKey=${apiKey}`
-  //     );
-  //     const data = response.data;
-  //     console.log(data);
-  //     setRecipes(data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
   const handleCurrentIngredientChange = (e) => {
     setCurrentIngredient(e.target.value);
   };
@@ -93,9 +74,7 @@ const ApiTest = () => {
       setRecipeInfo(null);
     } else {
       try {
-        const response = await axios.get(
-          `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${apiKey}`
-        );
+        const response = await axios.get(`/api/recipes/${recipeId}/information`);
         const data = response.data;
         console.log(data);
         setRecipeInfo(data);
