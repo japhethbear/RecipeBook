@@ -40,12 +40,12 @@ const ApiTest = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const ingredientsQuery = ingredients.join(',');
-      const response = await axios.get(
-        `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${encodeURIComponent(
-          ingredientsQuery
-        )}&number=${number}&addRecipeNutrition=true&addRecipeInformation=true&apiKey=${apiKey}`
-      );
+      const response = await axios.get('http://localhost:8000/api/recipes/search', {
+        params: {
+          ingredients,
+          number
+        }
+      });
       const data = response.data;
       console.log(data);
       setRecipes(data);
@@ -53,6 +53,23 @@ const ApiTest = () => {
       console.log(error);
     }
   };
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const ingredientsQuery = ingredients.join(',');
+  //     const response = await axios.get(
+  //       `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${encodeURIComponent(
+  //         ingredientsQuery
+  //       )}&number=${number}&addRecipeNutrition=true&addRecipeInformation=true&apiKey=${apiKey}`
+  //     );
+  //     const data = response.data;
+  //     console.log(data);
+  //     setRecipes(data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   const handleCurrentIngredientChange = (e) => {
     setCurrentIngredient(e.target.value);
@@ -332,13 +349,6 @@ const ApiTest = () => {
           </ul>
         </div>
       </div>
-      {/* <RecipeForm
-        recipe={recipe}
-        setRecipe={setRecipe}
-        submitRecipe={submitRecipe}
-        errors={errors}
-        handleRecipeSelection={handleRecipeSelection}
-      /> */}
     </>
   );
 };

@@ -15,21 +15,6 @@ import axios from 'axios';
 
 function App() {
 
-  const [apiKey, setApiKey] = useState('');
-
-  useEffect(() => {
-    // Fetch the API key from the server
-    axios.get('/api/apiKey')
-      .then(response => {
-        console.log(process.env.REACT_APP_API_KEY)
-        const apiKey = response.data;
-        setApiKey(apiKey);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }, []);
-
   return (
     <div className="App">
       <Routes>
@@ -40,7 +25,7 @@ function App() {
         <Route element={<RecipeData/>} path="recipe/:userId/:recipeId"/>
         <Route element={<ViewRecipe/>} path="recipe/:userId/:recipeId/view"/>
         <Route element={<NotFound/>} path="*"/>
-        <Route element={<APITest apiKey={apiKey}/>} path="api/:id"/>
+        <Route element={<APITest/>} path="api/:id"/>
       </Routes>
       
     </div>

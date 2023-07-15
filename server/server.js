@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const cookieParser = require('cookie-parser');
+const axios = require('axios');
 
 app.use(cors({
     credentials: true,
@@ -18,11 +19,25 @@ app.use(cors({
 
 const port = 8000;
 
-app.get('/api/apiKey', (req, res) => {
-    const apiKey = process.env.REACT_APP_API_KEY; // Access the API key from environment variables
-    res.send(apiKey);
-  });
+app.get('/api/recipes/search', async (req, res) => {
+  try {
+    const { ingredients, number } = req.query;
 
+    const ingredientsQuery = ingredients.join(',');
+
+    const response = await axios.get(
+      `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${encodeURIComponent(
+        ingredientsQuery
+      )}&number=${number}&addRecipeNutrition=true&addRecipeInformation=true&apiKey=0de1ff1e8039475d937fabae43c74b79`
+    );
+
+    const recipes = response.data;
+    res.json(recipes);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'An error occurred' });
+  }
+});
 
 require('./config/mongoose.config');
 
