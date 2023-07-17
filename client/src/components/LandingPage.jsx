@@ -1,6 +1,7 @@
 import React, { useEffect, useState }from 'react';
 import axios from 'axios'
 import { useNavigate, Link, useParams } from 'react-router-dom';
+import GRamsey from '../assets/images/GRamsay.jpeg';
 
 const LandingPage = () => {
 
@@ -40,7 +41,7 @@ const LandingPage = () => {
             <p className=''><Link to={`/recipe/new/${id}`} >Add Recipe</Link></p>
             {/* <p className='border-start border-primary border-2 ps-5 mx-5'><Link to={'..'} >Shopping List</Link></p> */}
         </div>
-        <img src="/images/GRamsay.jpeg" alt="Gordon Ramsay" width="1050" height="625"/>
+        <img src={GRamsey} alt="Gordon Ramsay" width="1050" height="625"/>
         </>
 
     )

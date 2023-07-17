@@ -28,7 +28,7 @@ app.get('/api/recipes/search', async (req, res) => {
     const response = await axios.get(
       `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${encodeURIComponent(
         ingredientsQuery
-      )}&number=${number}&addRecipeNutrition=true&addRecipeInformation=true&apiKey=${process.env.REACT_APP_API_KEY}}`
+      )}&number=${number}&addRecipeNutrition=true&addRecipeInformation=true&apiKey=${process.env.REACT_APP_API_KEY}`
     );
 
     const recipes = response.data;
