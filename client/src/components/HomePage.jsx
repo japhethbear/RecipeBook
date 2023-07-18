@@ -2,8 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
+import About from './About';
 import kitchenBackground from '../assets/images/kitchenbackground.jpg';
 import cookbook from '../assets/images/cookbook.png';
+import HowToCook from './HowtoCook';
+import AppFunctionality from './AppFunctionality';
 
 import './styles.css';
 
@@ -14,7 +17,7 @@ const HomePage = () => {
         <div
           className="background-image"
           style={{
-            backgroundImage: `url(${kitchenBackground}`,
+            backgroundImage: `url(${kitchenBackground})`,
           }}
         ></div>
         <nav className="navbar navbar-expand-lg navbar-dark" style={{ background: 'none' }}>
@@ -25,24 +28,24 @@ const HomePage = () => {
             </h3>
             <ul className="navbar-nav ml-auto" style={{ display: 'flex', alignItems: 'center' }}>
               <li className="nav-item">
-                <Link className="nav-link" to="/" style={{ fontSize: '20px', color: 'black' }}>
+                <a className="nav-link" href="#about" style={{ fontSize: '20px', color: 'black' }}>
                   About
-                </Link>
+                </a>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/" style={{ fontSize: '20px', color: 'black' }}>
+                <a className="nav-link" href="#example" style={{ fontSize: '20px', color: 'black' }}>
                   Example
-                </Link>
+                </a>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/" style={{ fontSize: '20px', color: 'black' }}>
+                <a className="nav-link" href="#how-to-cook" style={{ fontSize: '20px', color: 'black' }}>
                   How to Cook
-                </Link>
+                </a>
               </li>
             </ul>
             <Link
               className="nav-link"
-              to="/"
+              to="/login"
               style={{ marginLeft: 'auto', fontSize: '20px', color: 'black' }}
             >
               Log in
@@ -64,6 +67,15 @@ const HomePage = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div id="about" className="section">
+            <About />
+      </div>
+      <div id="example" className="section">
+        <AppFunctionality />
+      </div>
+      <div id="how-to-cook" className="section">
+        <HowToCook />      
       </div>
     </div>
   );

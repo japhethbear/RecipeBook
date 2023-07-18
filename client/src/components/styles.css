@@ -1,27 +1,27 @@
 :root {
-    --rich-black: #001524ff;
-    --caribbean-current: #15616dff;
-    --papaya-whip: #ffecd1ff;
-  }
+  --rich-black: #001524ff;
+  --caribbean-current: #15616dff;
+  --papaya-whip: #ffecd1ff;
+}
 
-  .background-wrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-  }
-  
-  .background-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    opacity: 0.6;
-  }  
-  
+.background-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.6;
+}
+
 .container {
   position: relative;
   z-index: 1;
@@ -37,8 +37,129 @@
   z-index: 2;
   background: none;
   width: 100%;
-  max-width: 400px; 
+  max-width: 400px;
   margin: 0 auto;
 }
 
+/* About Component */
+.about-container {
+  background-color: var(--papaya-whip);
+  padding: 40px;
+  margin-bottom: 40px;
+}
 
+.about-title {
+  font-size: 24px;
+  color: var(--rich-black);
+  margin-bottom: 20px;
+}
+
+.about-description {
+  font-size: 16px;
+  color: var(--rich-black);
+}
+
+/* HowToCook Component */
+.how-to-cook-container {
+  background-color: var(--papaya-whip);
+  padding: 40px;
+  margin-bottom: 40px;
+}
+
+.how-to-cook-title {
+  font-size: 24px;
+  color: var(--rich-black);
+  margin-bottom: 20px;
+}
+
+.how-to-cook-video {
+  width: 100%;
+}
+
+/* AppFunctionality Component */
+
+/* appFunctionality.css */
+.app-functionality-container {
+  background-color: var(--papaya-whip);
+  padding: 40px;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.app-functionality-title {
+  font-size: 24px;
+  color: var(--rich-black);
+  margin-bottom: 20px;
+}
+
+.carousel-container .control-dots {
+  bottom: -30px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.carousel-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.carousel-item .control-arrow-wrapper {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.carousel-item video {
+  width: 100%;
+}
+
+.carousel-item .legend {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.carousel-container .carousel-slider {
+  position: relative;
+}
+
+.carousel-container .control-arrow {
+  background-color: transparent;
+  transform: rotate(180deg);
+}
+
+.carousel .control-arrow:before {
+  color: var(--rich-black);
+  transform: rotate(180deg);
+  line-height: 20px;
+}
+
+.carousel .control-arrow:hover {
+  background-color: transparent;
+}
+
+.carousel .control-prev.control-arrow:before {
+  transform: rotate(180deg);
+}
+
+.custom-indicator {
+  width: 10px;
+  height: 10px;
+  background-color: var(--rich-black);
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.custom-indicator.active {
+  background-color: var(--caribbean-current);
+}
