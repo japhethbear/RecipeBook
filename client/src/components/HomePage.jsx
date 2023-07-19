@@ -2,24 +2,30 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
-import About from './About';
+import About from './About/About';
 import kitchenBackground from '../assets/images/kitchenbackground.jpg';
 import cookbook from '../assets/images/cookbook.png';
 import HowToCook from './HowtoCook';
 import AppFunctionality from './AppFunctionality';
+import BGCooking from '../assets/videos/BGCooking.mp4'
 
+import './About/aboutstyles.css'
 import './styles.css';
 
 const HomePage = () => {
   return (
     <div className="container-fluid px-0" style={{ background: 'var(--papaya-whip)', minHeight: '100vh' }}>
       <div className="background-wrapper">
-        <div
+        <video className="background-video" autoPlay muted loop>
+            <source src={BGCooking} type="video/mp4" />
+            Your browser does not support the video tag.
+        </video>
+        {/* <div
           className="background-image"
           style={{
             backgroundImage: `url(${kitchenBackground})`,
-          }}
-        ></div>
+          }}>
+        </div> */}
         <nav className="navbar navbar-expand-lg navbar-dark" style={{ background: 'none' }}>
           <div className="container">
             <img src={cookbook} alt="Cook Book Picture" style={{ width: '40px', height: 'auto' }}/>

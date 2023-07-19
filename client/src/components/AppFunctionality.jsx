@@ -2,7 +2,6 @@ import React from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import './styles.css'; // Import the custom CSS file
-import LoginVideo from '..assets/videos/LoginVideo.mov';
 
 const AppFunctionality = () => {
   return (
@@ -22,24 +21,24 @@ const AppFunctionality = () => {
         >
           <div className="carousel-item">
             <video controls>
-              <source src={LoginVideo} type="video/mov" />
+              <source src="/path/to/video1.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
-            <p>Video 1 Description</p>
+            <p className='mt-3'>Register a new account or log in</p>
           </div>
           <div className="carousel-item">
             <video controls>
               <source src="/path/to/video2.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
-            <p>Video 2 Description</p>
+            <p className='mt-3' >Add a recipe or go to your recipe dashboard</p>
           </div>
           <div className="carousel-item">
             <video controls>
               <source src="/path/to/video3.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
-            <p>Video 3 Description</p>
+            <p className='mt-3'>Browse your saved recipes</p>
             <div className="control-arrow-wrapper">
             </div>
             <div className="control-arrow-wrapper">

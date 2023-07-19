@@ -1,0 +1,33 @@
+.about-container {
+    background: transparent;
+    padding: 40px;
+    margin-bottom: 40px;
+  }
+  
+  .about-title {
+    font-size: 32px;
+    color: var(--rich-black);
+    margin-bottom: 20px;
+  }
+  
+  .about-description {
+    font-size: 16px;
+    color: var(--rich-black);
+    margin-bottom: 20px;
+  }
+  
+  .about-subtitle {
+    font-size: 24px; /* Font size for h3 subtitles */
+    color: var(--rich-black);
+    margin-bottom: 10px;
+  }
+  
+  .about-list {
+    list-style-type: none; /* Remove bullet points from list items */
+    padding-left: 0; /* Remove default padding from the list */
+  }
+  
+  .about-list li {
+    margin-bottom: 5px; /* Add some spacing between list items */
+    font-size: 16px;
+  }

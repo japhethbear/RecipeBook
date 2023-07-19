@@ -6,8 +6,8 @@ const HowToCook = () => {
       <h2 className="how-to-cook-title">How to Cook</h2>
       <div className="how-to-cook-video">
         <iframe
-          width="560"
-          height="315"
+          width="500"
+          height="400"
           src="https://www.youtube.com/embed/zhI7bQyTmHw"
           title="How to Cook Video"
           frameborder="0"
