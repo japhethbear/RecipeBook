@@ -1,0 +1,87 @@
+/* AppFunctionality Component */
+
+.app-functionality-container {
+    background: transparent;
+    padding: 40px;
+    margin-bottom: 40px;
+    position: relative;
+  }
+  
+  .app-functionality-title {
+    font-size: 24px;
+    color: var(--rich-black);
+    margin-bottom: 20px;
+  }
+  
+  .carousel-container .control-dots {
+    bottom: -30px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .carousel-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .carousel-item .control-arrow-wrapper {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .carousel-item video {
+    width: 100%;
+  }
+  
+  .carousel-item .legend {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin-top: 15px;
+  }
+  
+  .carousel-container .carousel-slider {
+    position: relative;
+  }
+  
+  .carousel-container .control-arrow {
+    background-color: transparent;
+    transform: rotate(180deg);
+  }
+  
+  .carousel .control-arrow:before {
+    color: var(--rich-black);
+    transform: rotate(180deg);
+    line-height: 20px;
+  }
+  
+  .carousel .control-arrow:hover {
+    background-color: transparent;
+  }
+  
+  .carousel .control-prev.control-arrow:before {
+    transform: rotate(180deg);
+  }
+  
+  .custom-indicator {
+    width: 10px;
+    height: 10px;
+    background-color: var(--rich-black);
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .custom-indicator.active {
+    background-color: var(--caribbean-current);
+  }
+  

@@ -1,0 +1,24 @@
+/* HowToCook Component */
+.how-to-cook-container {
+    background: transparent;
+    padding: 40px;
+    margin-bottom: 40px;
+  }
+  
+  .how-to-cook-title {
+    font-size: 24px;
+    color: var(--rich-black);
+    margin-bottom: 20px;
+  }
+  
+  .how-to-cook-video {
+    width: 100%;
+    height: 425px; /* Adjust the height as needed */
+    overflow: hidden;
+  }
+  
+  .how-to-cook-video iframe {
+    width:  60%;
+    height: 100%;
+    object-fit: cover;
+  }

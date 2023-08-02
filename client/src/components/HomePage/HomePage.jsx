@@ -1,16 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import LoginForm from './LoginForm';
-import RegisterForm from './RegisterForm';
-import About from './About/About';
-import kitchenBackground from '../assets/images/kitchenbackground.jpg';
-import cookbook from '../assets/images/cookbook.png';
-import HowToCook from './HowtoCook';
-import AppFunctionality from './AppFunctionality';
-import BGCooking from '../assets/videos/BGCooking.mp4'
+import LoginForm from '../LoginForm';
+import RegisterForm from '../RegisterForm';
+import About from '../About/About';
+import kitchenBackground from '../../assets/images/kitchenbackground.jpg';
+import cookbook from '../../assets/images/cookbook.png';
+import HowToCook from '../HowToCook/HowtoCook';
+import AppFunctionality from '../AppDemo/AppFunctionality';
+import BGCooking from '../../assets/videos/BGCooking.mp4'
 
-import './About/aboutstyles.css'
-import './styles.css';
+import '../About/aboutstyles.css'
+import './homepagestyles.css';
+import '../HowToCook/howtostyles.css'
+import '../AppDemo/appdemostyles.css'
 
 const HomePage = () => {
   return (

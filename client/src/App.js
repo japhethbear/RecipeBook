@@ -5,7 +5,7 @@ import RecipeData from './components/RecipeData'
 import LandingPage from './components/LandingPage';
 import RecipeForm from './components/RecipeForm';
 import NotFound from './components/NotFound';
-import HomePage from './components/HomePage';
+import HomePage from './components/HomePage/HomePage';
 import ViewRecipe from './components/ViewRecipe';
 import APITest from './components/APITest';
 import { useState, useEffect } from 'react';
