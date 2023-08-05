@@ -26,6 +26,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
+    height: auto;
   }
   
   .carousel-item .control-arrow-wrapper {
@@ -35,7 +36,8 @@
   }
   
   .carousel-item video {
-    width: 100%;
+    width: 60%;
+    height: auto;
   }
   
   .carousel-item .legend {
