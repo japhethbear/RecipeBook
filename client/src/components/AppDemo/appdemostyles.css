@@ -1,45 +1,55 @@
 /* AppFunctionality Component */
 
+.app-container {
+  background: var(--papaya-whip);
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+}
+
 .app-functionality-container {
-    background: transparent;
-    padding: 40px;
-    margin-bottom: 40px;
-    position: relative;
-  }
+  padding: 40px;
+  margin-bottom: 40px;
+}
+
+.app-functionality-title {
+  font-size: 24px;
+  color: var(--rich-black);
+  margin-bottom: 20px;
+}
   
-  .app-functionality-title {
-    font-size: 24px;
-    color: var(--rich-black);
-    margin-bottom: 20px;
-  }
+.carousel-container {
+  position: relative;
+}
+
+.carousel .carousel .control-dots {
+  bottom: -30px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+}
   
-  .carousel-slider .control-dots {
-    bottom: -30px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  }
+.carousel-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: auto;
+}
   
-  .carousel-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    height: auto;
-  }
-  
-  .carousel-item .control-arrow-wrapper {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  
-  .carousel-item video {
-    width: 60%;
-    height: auto;
-  }
-  
+.carousel-item .control-arrow-wrapper {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.carousel-item video {
+  width: 60%;
+  height: auto;
+}
+
   .carousel-item .legend {
     position: absolute;
     bottom: 20px;
@@ -51,6 +61,7 @@
   
   .carousel-container .carousel-slider {
     position: relative;
+    z-index: 3;
   }
   
   .carousel-container .control-arrow {

@@ -28,9 +28,6 @@ const HomePage = () => {
         <div id="about" className="section">
           <About />
         </div>
-        {/* <div id="how-to-cook" className="section">
-          <HowToCook />      
-        </div> */}
       </div>
     </div>
   );

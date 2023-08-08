@@ -25,11 +25,6 @@ const Navbar = () => {
                 Demo
             </Link>
           </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#how-to-cook" style={{ fontSize: '20px', color: 'black' }}>
-              How to Cook
-            </a>
-          </li>
         </ul>
         <Link
           className="nav-link"
