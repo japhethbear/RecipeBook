@@ -12,11 +12,6 @@ const Navbar = () => {
         </h3>
         <ul className="navbar-nav ml-auto" style={{ display: 'flex', alignItems: 'center' }}>
           <li className="nav-item">
-            <a className="nav-link" href="#about" style={{ fontSize: '20px', color: 'black' }}>
-              About
-            </a>
-          </li>
-          <li className="nav-item">
             <Link
                 className="nav-link"
                 to="/appdemo"

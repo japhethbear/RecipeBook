@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import cookbook from '../../assets/images/cookbook.png';
 import kitchenBackground from '../../assets/images/kitchenbackground.jpg';
+import './layoutstyles.css';
 
 const Layout = ({ children }) => {
   return (
