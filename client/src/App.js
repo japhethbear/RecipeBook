@@ -12,6 +12,7 @@ import RegLogin from './components/RegLogin/RegLogin';
 import AppDemo from './components/AppDemo/AppDemo';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import TrimRecipe from './components/TrimRecipe/TrimRecipe'
 
 
 
@@ -30,6 +31,7 @@ function App() {
         <Route element={<ViewRecipe/>} path="recipe/:userId/:recipeId/view"/>
         <Route element={<NotFound/>} path="*"/>
         <Route element={<APITest/>} path="api/:id"/>
+        <Route element={<TrimRecipe/>} path="trimrecipe/:id"/>
       </Routes>
       
     </div>

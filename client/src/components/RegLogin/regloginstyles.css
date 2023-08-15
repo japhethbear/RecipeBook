@@ -1,95 +1,75 @@
-/* Container Stylings */
+/* regloginstyles.css */
 
+/* Global Styles */
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+}
+
+/* Auth Background Container */
 .auth-background-container {
   position: relative;
-  width: 100vh;
+  width: 100vw;
   height: 100vh;
   background-size: cover;
   background-position: center;
-  opacity: 0.6;
-  z-index: -1;
 }
 
-.auth-container {
-  position: relative;
-  z-index: 2;
-  padding: 40px;
-  margin-top: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-  }
-
-.auth-background-image {
-  position: absolute;
+/* Navbar */
+.auth-navbar {
+  padding: 10px 0;
+  position: sticky;
   top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  opacity: 0.6;
-  z-index: -1;
+  z-index: 2;
 }
-  
-  .auth-title {
-    font-size: 24px;
-    color: var(--rich-black);
-    margin-bottom: 20px;
-  }
-  
-  .auth-forms {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
-  
-  .form-container {
-    flex: 1;
-    padding: 20px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .auth-footer {
-    margin-top: 20px;
-  }
-  
-  .auth-footer-text {
-    color: var(--rich-black);
-    font-size: 14px;
-  }
-  
-  /* Navbar Stylings */
-  
-  .auth-navbar {
-    background: transparent;
-    padding: 10px 0;
-    position: sticky;
-    top: 0;
-    z-index: 2;
-  }
-  
-  .auth-navbar .container {
-    display: flex;
-    align-items: center;
-  }
-  
-  .auth-navbar-brand {
-    font-size: 20px;
-    color: var(--rich-black);
-  }
-  
-  .auth-navbar-links {
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-  }
-  
-  .auth-navbar-link {
-    font-size: 18px;
-    color: var(--rich-black);
-    margin-left: 20px;
-    text-decoration: none;
-  }
-  
+
+.auth-navbar .container {
+  display: flex;
+  align-items: center;
+}
+
+.auth-navbar-brand {
+  font-size: 24px;
+  color: var(--rich-black);
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+
+.auth-navbar-brand img {
+  width: 40px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.auth-navbar-links {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.auth-navbar-link {
+  font-size: 18px;
+  color: var(--rich-black);
+  margin-left: 20px;
+  text-decoration: none;
+}
+
+/* Auth Content */
+.auth-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 80px); /* Subtracting navbar height */
+}
+
+.auth-form-container {
+  width: 300px;
+  margin: 20px;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}

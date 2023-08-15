@@ -39,7 +39,7 @@ const LandingPage = () => {
         <div className='d-flex justify-content-center align-items-center pl-5'>
             <p className='border-end border-primary border-2 pe-5 mx-5'><Link to={`/myrecipes/${id}`} >My Recipes</Link></p>
             <p className=''><Link to={`/recipe/new/${id}`} >Add Recipe</Link></p>
-            {/* <p className='border-start border-primary border-2 ps-5 mx-5'><Link to={'..'} >Shopping List</Link></p> */}
+            <p className='border-start border-primary border-2 ps-5 mx-5'><Link to={`/trimrecipe/${id}`} >Trim Recipe</Link></p>
         </div>
         <img src={GRamsey} alt="Gordon Ramsay" width="1050" height="625"/>
         </>
