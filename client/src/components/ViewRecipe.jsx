@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import axios from 'axios';
+import '../components/HomePage/homepagestyles.css'
+import kitchenBackground from '../assets/images/kitchenbackground.jpg'
+import cookbook from '../assets/images/cookbook.png'
+import gordonIncredible from '../assets/images/gordonincredible.gif'
 
 const ViewRecipe = () => {
 
@@ -50,17 +54,27 @@ const ViewRecipe = () => {
     
      
       return (
-        <div>
+        <div className="dashboard-background-container" style={{ backgroundImage: `url(${kitchenBackground})` }}>
+            <div className="auth-navbar">
+                <div className="container">
+                <div className="auth-navbar-brand">
+                    <img src={cookbook} alt="Cook Book Picture" style={{ width: '40px', height: 'auto' }} />
+                    <h3>Recipe Book</h3>
+                </div>
+                <div className="auth-navbar-links">
+                    <Link to={`/myrecipes/${userId}`} className="auth-navbar-link">Back to Recipes</Link>
+                    <Link to="/" className="auth-navbar-link" onClick={logout}>Logout</Link>
+                </div>
+                </div>
+            </div>
             <div className='d-flex justify-content-around mt-3'>
                 <h1>{recipe.recipeName || 'Recipe Name'}</h1>
-                <h5><Link to={`/myrecipes/${userId}`} >Back to Recipes</Link></h5>
-                <button className='btn btn-danger' style={logoutButtonStyle} onClick={logout}>Logout</button>
             </div>
             <div className='d-flex justify-content-around'>
 
-                <div className='table table-responsive m-2'>
+                <div className='table table-responsive m-2' style={{ padding: '5px' }}>
                     <table className="table table-striped table-hover table-bordered caption-top">
-                        <caption>List of Ingredients</caption>
+                        <caption style={{ fontSize: '18px'}}>List of Ingredients</caption>
                         <thead className='table-secondary'>
                             <tr>
                             <th scope="col">Ingredient</th>
@@ -79,9 +93,9 @@ const ViewRecipe = () => {
                     </table>
                 </div>
 
-                <div className='table table-responsive m-2'>
+                <div className='table table-responsive m-2' style={{ padding: '5px' }}>
                     <table className="table table-striped table-hover table-bordered caption-top">
-                        <caption>List of Instructions</caption>
+                        <caption style={{ fontSize: '18px'}}>List of Instructions</caption>
                         <thead className='table-secondary'>
                             <tr>
                                 <th scope="col">Instructions</th>
@@ -99,7 +113,11 @@ const ViewRecipe = () => {
                 </div>
 
             </div>
-           
+            <img
+                    src={gordonIncredible}
+                    alt="Gordon Ramsey Incredible GIF"
+                    style={{ width: '100%', maxWidth: '400px', padding: '20px' }}
+                    />
         </div>
       )
     }
