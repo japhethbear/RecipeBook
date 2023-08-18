@@ -11,13 +11,13 @@
   }
   
   .about-description {
-    font-size: 16px;
+    font-size: 18px;
     color: var(--rich-black);
     margin-bottom: 20px;
   }
   
   .about-subtitle {
-    font-size: 24px; /* Font size for h3 subtitles */
+    font-size: 26px; /* Font size for h3 subtitles */
     color: var(--rich-black);
     margin-bottom: 10px;
   }
@@ -29,5 +29,5 @@
   
   .about-list li {
     margin-bottom: 5px; /* Add some spacing between list items */
-    font-size: 16px;
+    font-size: 18px;
   }

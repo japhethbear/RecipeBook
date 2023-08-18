@@ -1,7 +1,11 @@
 import React, { useEffect, useState }from 'react';
 import axios from 'axios'
 import { useNavigate, Link, useParams } from 'react-router-dom';
-import GRamsey from '../assets/images/GRamsay.jpeg';
+import gordonRamseyHelp from '../assets/images/gramsey.gif';
+import kitchenBackground from '../assets/images/kitchenbackground.jpg'
+import cookbook from '../assets/images/cookbook.png'
+
+import '../components/HomePage/homepagestyles.css'
 
 const LandingPage = () => {
 
@@ -34,14 +38,32 @@ const LandingPage = () => {
 
     return (
         <>
-        <h1 className='mt-2'>Time to cook, {user.firstName}!</h1>
-        <button className='btn btn-danger' style={logoutButtonStyle} onClick={logout}>Logout</button>
-        <div className='d-flex justify-content-center align-items-center pl-5'>
-            <p className='border-end border-primary border-2 pe-5 mx-5'><Link to={`/myrecipes/${id}`} >My Recipes</Link></p>
-            <p className=''><Link to={`/recipe/new/${id}`} >Add Recipe</Link></p>
-            <p className='border-start border-primary border-2 ps-5 mx-5'><Link to={`/trimrecipe/${id}`} >Trim Recipe</Link></p>
+        <div className="auth-background-container" style={{ backgroundImage: `url(${kitchenBackground})` }}>
+            <div className="auth-navbar">
+                <div className="container">
+                <div className="auth-navbar-brand">
+                    <img src={cookbook} alt="Cook Book Picture" style={{ width: '40px', height: 'auto' }} />
+                    <h3>Recipe Book</h3>
+                </div>
+                <div className="auth-navbar-links">
+                    <Link to="/" className="auth-navbar-link" onClick={logout}>Logout</Link>
+                </div>
+                </div>
+            </div>
+            <div className="landing-content">
+                <h1 className="landing-heading">Time to cook, {user.firstName}!</h1>
+                <div className="link-container">
+                    <p className="link-item border-end"><Link to={`/myrecipes/${id}`} className="nav-link">My Recipes</Link></p>
+                    <p className="link-item"><Link to={`/recipe/new/${id}`} className="nav-link">Add Recipe</Link></p>
+                    <p className="link-item border-start"><Link to={`/trimrecipe/${id}`} className="nav-link">Trim Recipe</Link></p>
+                </div>
+                <img 
+                    src={gordonRamseyHelp} // Set the src attribute to the image path
+                    alt="Gordon Ramsey Help GIF" // Add an alt attribute for accessibility
+                    style={{ width: '100%', maxWidth: '400px', margin: '20px auto' }} // Adjust the styles as needed
+                />
+            </div>
         </div>
-        <img src={GRamsey} alt="Gordon Ramsay" width="1050" height="625"/>
         </>
 
     )

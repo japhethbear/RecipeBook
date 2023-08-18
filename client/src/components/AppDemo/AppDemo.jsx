@@ -15,14 +15,12 @@ const AppDemo = () => {
         <div className="background-image" style={{ backgroundImage: `url(${kitchenBackground})` }} />
         <div className="demo-navbar">
           <div className="container demo-navbar-container">
-            <div className="demo-navbar-brand">
+            <div className="auth-navbar-brand">
               <img src={cookbook} alt="Cook Book Picture" style={{ width: '40px', height: 'auto' }} />
               <h3>Recipe Book</h3>
             </div>
-            <div className="demo-navbar-links">
-              <Link to="/" className="demo-navbar-link">
-                Home
-              </Link>
+            <div className="auth-navbar-links">
+              <Link to="/" className="auth-navbar-link">Home</Link>
             </div>
           </div>
         </div>

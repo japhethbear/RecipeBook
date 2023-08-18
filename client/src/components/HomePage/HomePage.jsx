@@ -1,35 +1,33 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import About from '../About/About';
 import kitchenBackground from '../../assets/images/kitchenbackground.jpg';
-import Navbar from '../Navbar/Navbar';
-import Layout from '../Layout/Layout';
 
 import '../About/aboutstyles.css'
-import './homepagestyles.css';
-import '../HowToCook/howtostyles.css'
-import '../AppDemo/appdemostyles.css'
+import './homepagestyles.css'
+import { Link } from 'react-router-dom'
+import cookbook from '../../assets/images/cookbook.png'
 
 const HomePage = () => {
   return (
-    <Layout>
-      <div className="container-fluid px-0" style={{ background: 'var(--papaya-whip)', minHeight: '100vh' }}>
-        <div className="background-wrapper">
-          <div
-            className="background-image"
-            style={{
-              backgroundImage: `url(${kitchenBackground})`,
-            }}>
+    <div className="auth-background-container" style={{ backgroundImage: `url(${kitchenBackground})` }}>
+      <div className="auth-navbar">
+        <div className="container">
+          <div className="auth-navbar-brand">
+            <img src={cookbook} alt="Cook Book Picture" style={{ width: '40px', height: 'auto' }} />
+            <h3>Recipe Book</h3>
           </div>
-          <div className='container py-5'>
-            <Navbar />
-          </div>
-          <div id="about" className="section">
-            <About />
+          <div className="auth-navbar-links">
+            <Link to="/appdemo" className="auth-navbar-link">Demo</Link>
+            <Link to="../registerandlogin" className="auth-navbar-link">Log In</Link>
           </div>
         </div>
       </div>
-    </Layout>
+      <div className="auth-content">
+        <div id="about" className="section">
+          <About />
+        </div>
+      </div>
+    </div>
   );
 };
 

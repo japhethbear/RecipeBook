@@ -7,7 +7,7 @@ const Navbar = () => {
     <nav className="navbar navbar-expand-lg navbar-dark" style={{ background: 'none' }}>
       <div className="container">
         <img src={cookbook} alt="Cook Book Picture" style={{ width: '40px', height: 'auto' }} />
-        <h3 className="navbar-brand" style={{ marginRight: 'auto', fontSize: '20px', color: 'black' }}>
+        <h3 className="navbar-brand" style={{ marginRight: 'auto', color: 'black' }}>
           Recipe Book
         </h3>
         <ul className="navbar-nav ml-auto" style={{ display: 'flex', alignItems: 'center' }}>
