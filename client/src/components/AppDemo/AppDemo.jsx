@@ -7,6 +7,7 @@ import YourRecipes from '../../assets/videos/YourRecipes.mp4';
 import AddRecipe from '../../assets/videos/AddRecipe.mp4';
 import cookbook from '../../assets/images/cookbook.png';
 import kitchenBackground from '../../assets/images/kitchenbackground.jpg';
+import './appdemostyles.css'
 
 const AppDemo = () => {
   return (
@@ -28,7 +29,7 @@ const AppDemo = () => {
           <h2 className="app-functionality-title">App Demo</h2>
           <div className="carousel-container">
             <Carousel
-              showArrows={false}
+              showArrows={true}
               showStatus={false}
               showThumbs={false}
               renderIndicator={(onClickHandler, isSelected) => (
