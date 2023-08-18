@@ -4,6 +4,7 @@ import { useNavigate, Link, useParams } from 'react-router-dom';
 import '../components/HomePage/homepagestyles.css'
 import kitchenBackground from '../assets/images/kitchenbackground.jpg'
 import cookbook from '../assets/images/cookbook.png'
+import excitedRamsey from '../assets/images/excitedramsey.gif'
 
 const RecipeDashboard = () => {
     const [recipes, setRecipes] = useState([])
@@ -48,7 +49,7 @@ const RecipeDashboard = () => {
     };
 
   return (
-    <div className="auth-background-container" style={{ backgroundImage: `url(${kitchenBackground})` }}>
+    <div className="dashboard-background-container" style={{ backgroundImage: `url(${kitchenBackground})` }}>
             <div className="auth-navbar">
                 <div className="container">
                 <div className="auth-navbar-brand">
@@ -56,46 +57,55 @@ const RecipeDashboard = () => {
                     <h3>Recipe Book</h3>
                 </div>
                 <div className="auth-navbar-links">
-                    <Link to={`/home/${id}`} >Home Page</Link>
+                    <Link to={`/home/${id}`} className="auth-navbar-link" >Home Page</Link>
                     <Link to="/" className="auth-navbar-link" onClick={logout}>Logout</Link>
                 </div>
                 </div>
             </div>
-            <div className='d-flex justify-content-around mt-4'>
-                <h1>My Recipe Book</h1>
+            <div className='d-flex justify-content-start align-items-center mt-2'>
+                    <img
+                    src={excitedRamsey}
+                    alt="Gordon Ramsey Help GIF"
+                    style={{ width: '300px', maxWidth: '400px', padding: '20px' }}
+                    />
+                    <h1 className="landing-heading" style={{ marginLeft: '300px'}}>My Recipe Book</h1>
             </div>
-            <div className='d-flex justify-content-between mt-4'>
-                <button className="btn-secondary" onClick={navigateToRecipeForm}>Add a Recipe</button>
-            </div>
-            <div className='d-flex align-content-start mt-4'>
-                <label htmlFor="selectedMeal" className='me-2'>Select Meal: </label>
-                <select value={selectedMeal} onChange={(e) => setSelectedMeal(e.target.value)}>
-                    <option value="">All</option>
-                    <option value="Breakfast">Breakfast</option>
-                    <option value="Snack">Snack</option>
-                    <option value="Lunch">Lunch</option>
-                    <option value="Dinner">Dinner</option>
-                </select>
-            </div>
-            <br></br>
-            <div>
-                {recipes.filter(recipe => selectedMeal === '' || recipe.recipeMeal === selectedMeal)
-                .sort(function(a, b) {
-                        if(a.createdAt < b.createdAt) return -1;
-                        if(a.createdAt > b.createdAt) return 1;
-                        return 0;
-                    }).map((recipe, i) => {
-                        return (
-                            <div key={recipe._id} data={recipe} className='d-flex flex-column'>
-                                <h3 className='d-flex justify-content-start'>{recipe.recipeName}</h3>
-                                <div className='d-flex justify-content-between'>
-                                    <p>{recipe.recipeMeal}</p>
-                                    <p><Link to={`../recipe/${id}/${recipe._id}/view`}>View</Link></p>
-                                    <p><Link to={`../recipe/${id}/${recipe._id}`}>edit</Link></p>
+
+
+            <div className='recipe-list-container'>
+                <div className='d-flex justify-content-end mt-4'>
+                    <button className="btn-secondary" onClick={navigateToRecipeForm}>Add a Recipe</button>
+                </div>
+                <div className='d-flex justify-content-end align-content-start mt-4'>
+                    <label htmlFor="selectedMeal" className='me-2'>Select Meal: </label>
+                    <select value={selectedMeal} onChange={(e) => setSelectedMeal(e.target.value)}>
+                        <option value="">All</option>
+                        <option value="Breakfast">Breakfast</option>
+                        <option value="Snack">Snack</option>
+                        <option value="Lunch">Lunch</option>
+                        <option value="Dinner">Dinner</option>
+                    </select>
+                </div>
+                <br></br>
+                <div>
+                    {recipes.filter(recipe => selectedMeal === '' || recipe.recipeMeal === selectedMeal)
+                    .sort(function(a, b) {
+                            if(a.createdAt < b.createdAt) return -1;
+                            if(a.createdAt > b.createdAt) return 1;
+                            return 0;
+                        }).map((recipe, i) => {
+                            return (
+                                <div key={recipe._id} data={recipe} className='d-flex flex-column'>
+                                    <h3 className='d-flex justify-content-start' style={{ fontSize: '30px' }}>{recipe.recipeName}</h3>
+                                    <div className='d-flex justify-content-between'>
+                                        <p style={{ fontSize: '20px'}}>{recipe.recipeMeal}</p>
+                                        <p><Link to={`../recipe/${id}/${recipe._id}/view`} style={{ fontSize: '20px'}} className='auth-navbar-link'>View</Link></p>
+                                        <p><Link to={`../recipe/${id}/${recipe._id}`} style={{ fontSize: '20px'}} className='auth-navbar-link'>edit</Link></p>
+                                    </div>
                                 </div>
-                            </div>
-                        )
-                })}
+                            )
+                    })}
+                </div>
             </div>
     </div>
   )
