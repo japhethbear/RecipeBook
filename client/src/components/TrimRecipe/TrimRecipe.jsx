@@ -71,7 +71,7 @@ function TrimRecipe() {
         />
         <button type="submit" style={{ marginLeft: '3px' }}>Scrape Recipe</button>
       </form>
-      <div>
+      <div className='recipe-background'>
         <h3 style={{ marginTop: '20px' }}>Title: {scrapedData.title}</h3>
         <h4 style={{ fontSize: '24px', fontWeight: 'bold' }}>Ingredients:</h4>
         <ul style={{ fontSize: '18px' }}>
@@ -85,6 +85,16 @@ function TrimRecipe() {
             <li key={index}>{instruction}</li>
           ))}
         </ol>
+      </div>
+      <br></br>
+      <div className='recipe-background'>
+        <h3 style={{ fontSize: '24px', fontWeight: '' }}>** Right now, the scraping only works on the following websites: **</h3>
+        <ul style={{ fontSize: '20px', fontWeight: '' }}>
+          <li className='recipe-background'>Farmhouse on Boone</li>
+          <li className='recipe-background'>All Recipes</li>
+        </ul>
+        <p className='recipe-background' style={{ fontSize: '18px', fontWeight: '' }}>If you'd like to see more recipes added, please send your requests to j.bearessentials@gmail.com</p>
+
       </div>
     </div>
   );

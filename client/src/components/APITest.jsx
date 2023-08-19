@@ -252,7 +252,7 @@ const ApiTest = () => {
             </div>
             <div className="container">
               <div className="row justify-content-center">
-                <div className="col-md-6">
+                <div className="col-md-6 recipe-background">
                   <h3>Instructions:</h3>
                   <p style={{ fontSize: '18px'}}>To search for a recipe by ingredients:</p>
                   <p style={{ fontSize: '18px'}}>1. Enter your desired ingredient in the ingredient input box.</p>

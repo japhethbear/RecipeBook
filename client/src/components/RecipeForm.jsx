@@ -265,10 +265,10 @@ const RecipeForm = () => {
                     Add Instruction
                 </button>
                 </div>
-                <div className="form-group text-center mt-2">
+                {/* <div className="form-group text-center mt-2">
                     Photos: 
                     <DropzoneComponent handleFileDrop={handleFileDrop} />
-                </div>
+                </div> */}
                 
                 <button className='btn btn-info mt-2'>Add Recipe!</button>
             </form>

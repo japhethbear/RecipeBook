@@ -14,18 +14,23 @@
     font-size: 18px;
     color: var(--rich-black);
     margin-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.1); /* Adjust the alpha value to control transparency */
   }
   
   .about-subtitle {
     font-size: 26px; /* Font size for h3 subtitles */
     color: var(--rich-black);
     margin-bottom: 10px;
+    background-color: rgba(255, 255, 255, 0.1); /* Adjust the alpha value to control transparency */
   }
+  
   
   .about-list {
     list-style-type: none; /* Remove bullet points from list items */
     padding-left: 0; /* Remove default padding from the list */
+    background-color: rgba(255, 255, 255, 0.1); /* Adjust the alpha value to control transparency */
   }
+
   
   .about-list li {
     margin-bottom: 5px; /* Add some spacing between list items */

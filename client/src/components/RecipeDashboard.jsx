@@ -96,11 +96,11 @@ const RecipeDashboard = () => {
                         }).map((recipe, i) => {
                             return (
                                 <div key={recipe._id} data={recipe} className='d-flex flex-column'>
-                                    <h3 className='d-flex justify-content-start' style={{ fontSize: '30px' }}>{recipe.recipeName}</h3>
+                                    <h3 className='d-flex justify-content-start recipe-background' style={{ fontSize: '30px' }}>{recipe.recipeName}</h3>
                                     <div className='d-flex justify-content-between'>
-                                        <p style={{ fontSize: '20px'}}>{recipe.recipeMeal}</p>
-                                        <p><Link to={`../recipe/${id}/${recipe._id}/view`} style={{ fontSize: '20px'}} className='auth-navbar-link'>View</Link></p>
-                                        <p><Link to={`../recipe/${id}/${recipe._id}`} style={{ fontSize: '20px'}} className='auth-navbar-link'>edit</Link></p>
+                                        <p className='recipe-background'style={{ fontSize: '20px'}}>{recipe.recipeMeal}</p>
+                                        <p className='recipe-background'><Link to={`../recipe/${id}/${recipe._id}/view`} style={{ fontSize: '20px'}} className='auth-navbar-link'>View</Link></p>
+                                        <p className='recipe-background'><Link to={`../recipe/${id}/${recipe._id}`} style={{ fontSize: '20px'}} className='auth-navbar-link'>edit</Link></p>
                                     </div>
                                 </div>
                             )

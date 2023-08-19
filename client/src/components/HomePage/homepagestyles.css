@@ -72,6 +72,7 @@ body {
   justify-content: center;
   align-items: center;
   height: calc(100vh - 80px); /* Subtracting navbar height */
+
 }
 
 .auth-form-container {
@@ -113,6 +114,7 @@ body {
   padding: 8px 12px;
   border-radius: 5px;
   transition: background-color 0.3s, color 0.3s;
+  background-color: rgba(255, 255, 255, 0.05); /* Adjust the alpha value to control transparency */
 }
 
 .link-item:hover {
@@ -126,4 +128,8 @@ body {
 
 .centered-h1 {
   margin-left: 300px;
+}
+
+.recipe-background {
+  background-color: rgba(255, 255, 255, 0.05); /* Adjust the alpha value to control transparency */
 }

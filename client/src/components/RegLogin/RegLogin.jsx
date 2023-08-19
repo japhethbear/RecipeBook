@@ -21,10 +21,10 @@ const RegLogin = () => {
         </div>
       </div>
       <div className="auth-content">
-        <div className="auth-form-container">
+        <div className="auth-form-container with-background">
           <LoginForm />
         </div>
-        <div className="auth-form-container">
+        <div className="auth-form-container with-background">
           <RegisterForm />
         </div>
       </div>

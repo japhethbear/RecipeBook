@@ -8,6 +8,7 @@ import AddRecipe from '../../assets/videos/AddRecipe.mp4';
 import cookbook from '../../assets/images/cookbook.png';
 import kitchenBackground from '../../assets/images/kitchenbackground.jpg';
 import './appdemostyles.css'
+import RecipeWalkThrough from '../../assets/videos/RecipeBookWalkThrough.mp4';
 
 const AppDemo = () => {
   return (
@@ -38,24 +39,9 @@ const AppDemo = () => {
             >
               <div className="carousel-item">
                 <video controls>
-                  <source src={LoginVideo} type="video/mp4" />
+                  <source src={RecipeWalkThrough} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
-                <p className="mt-3">Register a new account or log in</p>
-              </div>
-              <div className="carousel-item">
-                <video controls>
-                  <source src={YourRecipes} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-                <p className="mt-3">View your recipe dashboard</p>
-              </div>
-              <div className="carousel-item">
-                <video controls>
-                  <source src={AddRecipe} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-                <p className="mt-3">Add your recipes</p>
               </div>
             </Carousel>
           </div>
