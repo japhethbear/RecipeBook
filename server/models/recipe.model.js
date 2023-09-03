@@ -11,11 +11,6 @@ const RecipeSchema = new mongoose.Schema({
         required: [true, "Meal is required"],
         enum: ["Breakfast", "Lunch", "Dinner", "Snack"]
     },
-    favorite: {
-        type: Boolean,
-        required: [true],
-        default: false
-    },
     ingredients: [{
         ingredientName: {
             type: String,
@@ -32,10 +27,10 @@ const RecipeSchema = new mongoose.Schema({
         type: String,
         required: [false],
     }],
-    photos: {
-        type: [String], // Array of photo URLs
-        default: [], // Empty array by default
-      },
+    user: {
+        type: mongoose.Schema.Types.ObjectId, // Reference to the user who created the recipe
+        ref: 'User' // Refers to the 'User' collection
+    }
 }, {timestamps: true});
 
 module.exports = mongoose.model("Recipe", RecipeSchema);

@@ -1,0 +1,14 @@
+.recipe-background ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .recipe-background ul li {
+    margin-left: 20px; /* Adjust the margin as needed */
+    padding: 5px 0; /* Adjust the padding as needed */
+  }
+  
+  .recipe-background ul li:before {
+    content: '• '; /* Bullet point character (you can use other characters) */
+  }
+  

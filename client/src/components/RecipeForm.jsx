@@ -25,10 +25,9 @@ const RecipeForm = () => {
     const [recipe, setRecipe] = useState({
         recipeName: "",
         recipeMeal: "",
-        favorite: false,
         ingredients: [],
         instructions: [],
-        photos: []
+        user: `${id}`
       });
 
     const [currentIngredient, setCurrentIngredient] = useState({
@@ -74,18 +73,6 @@ const RecipeForm = () => {
                 setErrors(errorArr);
             })
         };
-
-    const handleFileDrop = (droppedFiles) => {
-        const updatedFiles = droppedFiles.map(file => Object.assign(file, {
-            preview: URL.createObjectURL(file)
-        }));
-        
-        setRecipe(recipe => ({
-            ...recipe,
-            photos: [...recipe.photos, ...updatedFiles]
-        }));
-        };
-    
 
     const logout = () => {
         axios.post('http://localhost:8000/api/users/logout', {}, {withCredentials: true})

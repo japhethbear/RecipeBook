@@ -6,13 +6,18 @@ import '../../components/HomePage/homepagestyles.css'
 import kitchenBackground from '../../assets/images/kitchenbackground.jpg'
 import cookbook from '../../assets/images/cookbook.png'
 import gordonContinue from '../../assets/images/gordoncontinue.gif'
+import html2canvas from 'html2canvas';
+import { saveAs } from 'file-saver';
+import '../TrimRecipe/trimrecipestyles.css'
+
 
 function TrimRecipe() {
   const [userInputURL, setUserInputURL] = useState('');
-  const [scrapedData, setScrapedData] = useState({ title: '', ingredients: [], instructions: [] });
+  const [scrapedData, setScrapedData] = useState({ title: '', ingredients: [], instructions: [], imageUrl: '' });
   const { id } = useParams();
   const [user, setUser] = useState({});
   const navigate = useNavigate();
+  const [shared, setShared] = useState(false);
 
   useEffect(() => {
     axios.get(`http://localhost:8000/api/users/${id}`)
@@ -31,6 +36,26 @@ function TrimRecipe() {
       console.error(error);
     }
   };
+
+  const handleSaveImage = async () => {
+    // Find the element you want to capture (the recipe content in this case)
+    const recipeContentElement = document.querySelector('.recipe-background');
+  
+    // Use html2canvas to capture the content as an image
+    const canvas = await html2canvas(recipeContentElement);
+  
+    // Convert the canvas to a blob
+    canvas.toBlob(function (blob) {
+      // Create a file name for the saved image
+      const fileName = `${scrapedData.title}_image.png`; // Adjust the file extension as needed
+  
+      // Use FileSaver.js to save the blob as a file
+      saveAs(blob, fileName);
+    });
+  };
+  
+  
+  
 
   const logout = () => {
     axios.post('http://localhost:8000/api/users/logout', {}, {withCredentials: true})
@@ -72,7 +97,9 @@ function TrimRecipe() {
         <button type="submit" style={{ marginLeft: '3px' }}>Scrape Recipe</button>
       </form>
       <div className='recipe-background'>
-        <h3 style={{ marginTop: '20px' }}>Title: {scrapedData.title}</h3>
+        <h3 style={{ marginTop: '20px' }}>
+          <span style={{ fontWeight: 'bold' }}>Title:</span> {scrapedData.title}
+        </h3>        
         <h4 style={{ fontSize: '24px', fontWeight: 'bold' }}>Ingredients:</h4>
         <ul style={{ fontSize: '18px' }}>
           {scrapedData.ingredients.map((ingredient, index) => (
@@ -87,6 +114,8 @@ function TrimRecipe() {
         </ol>
       </div>
       <br></br>
+        <button style={{ marginBottom: '16px'}}onClick={handleSaveImage}>Save Image</button>
+      <br></br>
       <div className='recipe-background'>
         <h3 style={{ fontSize: '24px', fontWeight: '' }}>** Right now, the scraping only works on the following websites: **</h3>
         <ul style={{ fontSize: '20px', fontWeight: '' }}>
@@ -96,6 +125,7 @@ function TrimRecipe() {
         <p className='recipe-background' style={{ fontSize: '18px', fontWeight: '' }}>If you'd like to see more recipes added, please send your requests to j.bearessentials@gmail.com</p>
 
       </div>
+      {shared && <p>Recipe shared successfully!</p>}
     </div>
   );
 }
