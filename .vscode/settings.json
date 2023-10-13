@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/911c3828-cc0e-4b34-8845-82be81052701/resourceGroups/RecipeBookResourceGroup/providers/Microsoft.Web/sites/JBearRecipeBook",
+    "appService.deploySubpath": "."
+}

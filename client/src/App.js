@@ -10,8 +10,6 @@ import ViewRecipe from './components/ViewRecipe';
 import APITest from './components/APITest';
 import RegLogin from './components/RegLogin/RegLogin';
 import AppDemo from './components/AppDemo/AppDemo';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
 import TrimRecipe from './components/TrimRecipe/TrimRecipe'
 
 

@@ -5,6 +5,7 @@ const app = express();
 const cookieParser = require('cookie-parser');
 const axios = require('axios');
 const { load } = require('cheerio');
+const { MongoClient } = require('mongodb');
 
 app.use(cors({
     credentials: true,
@@ -13,10 +14,7 @@ app.use(cors({
 app.use(express.json(), express.urlencoded({extended: true}));
 app.use(cookieParser());
 
-app.use(cors({
-    credentials: true,
-    origin: 'http://localhost:3000' // Update with the correct URL of your React app
-  }));
+const mongoClient = new MongoClient(process.env.MONGODB_ATLAS_URI);
 
 const port = 8000;
 
@@ -121,8 +119,17 @@ app.post('/scrape-recipe', async (req, res) => {
 
 
 require('./config/mongoose.config');
-
 require('./routes/recipe.routes')(app);
 require('./routes/user.routes')(app);
 
-app.listen(port, () => console.log(`Listening on port: ${port}`));
+app.listen(port, async () => {
+    try {
+      await mongoClient.connect();
+      database = mongoClient.db("recipesDB");
+      userCollection = database.collection("users");
+      recipeCollection = database.collection("recipes");
+    } catch (error) {
+        console.error(error);
+    }
+    console.log(`Listening on port: ${port}`)
+  });
