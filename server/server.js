@@ -9,7 +9,7 @@ const { MongoClient } = require('mongodb');
 
 app.use(cors({
     credentials: true,
-    origin: 'http://localhost:3000' // Update with the correct URL of your React app
+    origin: 'http://localhost:3000'
   }));
 app.use(express.json(), express.urlencoded({extended: true}));
 app.use(cookieParser());

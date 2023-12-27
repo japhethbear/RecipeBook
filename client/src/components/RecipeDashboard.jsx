@@ -49,7 +49,7 @@ const RecipeDashboard = () => {
     };
 
   return (
-    <div className="dashboard-background-container" style={{ backgroundImage: `url(${kitchenBackground})` }}>
+    <div className="dashboard-background-container">
             <div className="auth-navbar">
                 <div className="container">
                 <div className="auth-navbar-brand">

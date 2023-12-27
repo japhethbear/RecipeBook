@@ -30,10 +30,12 @@ function TrimRecipe() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post('/scrape-recipe', { url: userInputURL });
+      const response = await axios.post('http://localhost:8000/scrape-recipe', { url: userInputURL });
       setScrapedData(response.data);
     } catch (error) {
-      console.error(error);
+        const errorResponse = error.message;
+        alert(errorResponse);
+        console.error('error', error);
     }
   };
 
@@ -66,7 +68,7 @@ function TrimRecipe() {
   };
 
   return (
-    <div className="dashboard-background-container" style={{ backgroundImage: `url(${kitchenBackground})` }}>
+    <div className="dashboard-background-container">
       <div className="auth-navbar">
           <div className="container">
               <div className="auth-navbar-brand">
@@ -128,6 +130,6 @@ function TrimRecipe() {
       {shared && <p>Recipe shared successfully!</p>}
     </div>
   );
-}
+          };
 
 export default TrimRecipe;

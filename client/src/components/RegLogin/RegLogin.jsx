@@ -8,7 +8,7 @@ import kitchenBackground from '../../assets/images/kitchenbackground.jpg';
 
 const RegLogin = () => {
   return (
-    <div className="auth-background-container" style={{ backgroundImage: `url(${kitchenBackground})` }}>
+    <div className="auth-background-container">
       <div className="auth-navbar">
         <div className="container">
           <div className="auth-navbar-brand">

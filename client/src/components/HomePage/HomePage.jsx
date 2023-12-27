@@ -9,7 +9,7 @@ import cookbook from '../../assets/images/cookbook.png'
 
 const HomePage = () => {
   return (
-    <div className="auth-background-container" style={{ backgroundImage: `url(${kitchenBackground})` }}>
+    <div className="auth-background-container">
       <div className="auth-navbar">
         <div className="container">
           <div className="auth-navbar-brand">

@@ -14,7 +14,6 @@ const AppDemo = () => {
   return (
     <div className="app-demo-container">
       <div className="container-fluid px-0 app-container">
-        <div className="background-image" style={{ backgroundImage: `url(${kitchenBackground})` }} />
         <div className="demo-navbar">
           <div className="container demo-navbar-container">
             <div className="auth-navbar-brand">
