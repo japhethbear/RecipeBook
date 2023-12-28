@@ -12,8 +12,6 @@ import RegLogin from './components/RegLogin/RegLogin';
 import AppDemo from './components/AppDemo/AppDemo';
 import TrimRecipe from './components/TrimRecipe/TrimRecipe'
 
-
-
 function App() {
 
   return (

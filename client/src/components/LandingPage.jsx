@@ -2,10 +2,9 @@ import React, { useEffect, useState }from 'react';
 import axios from 'axios'
 import { useNavigate, Link, useParams } from 'react-router-dom';
 import gordonRamseyHelp from '../assets/images/gramsey.gif';
-import kitchenBackground from '../assets/images/kitchenbackground.jpg'
 import cookbook from '../assets/images/cookbook.png'
 
-import '../components/HomePage/homepagestyles.css'
+import '../components/HomePage/newhomepagestyles.css'
 
 const LandingPage = () => {
 
@@ -38,16 +37,14 @@ const LandingPage = () => {
 
     return (
         <>
-        <div className="auth-background-container">
-            <div className="auth-navbar">
-                <div className="container">
-                <div className="auth-navbar-brand">
-                    <img src={cookbook} alt="Cook Book Picture" style={{ width: '40px', height: 'auto' }} />
+        <div className="background-container">
+            <div className="navbar">
+                <div className="navbar-brand">
+                    <img src={cookbook} alt="Cook Book" style={{ width: '40px', height: 'auto' }} />
                     <h3>Recipe Book</h3>
                 </div>
-                <div className="auth-navbar-links">
-                    <Link to="/" className="auth-navbar-link" onClick={logout}>Logout</Link>
-                </div>
+                <div className="navbar-links">
+                    <Link to="/" className="navbar-link" onClick={logout}>Logout</Link>
                 </div>
             </div>
             <div className="landing-content">

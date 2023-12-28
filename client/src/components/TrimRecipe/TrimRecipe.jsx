@@ -2,8 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useParams, useNavigate } from 'react-router-dom'
-import '../../components/HomePage/homepagestyles.css'
-import kitchenBackground from '../../assets/images/kitchenbackground.jpg'
+import '../../components/HomePage/newhomepagestyles.css'
 import cookbook from '../../assets/images/cookbook.png'
 import gordonContinue from '../../assets/images/gordoncontinue.gif'
 import html2canvas from 'html2canvas';
@@ -68,18 +67,16 @@ function TrimRecipe() {
   };
 
   return (
-    <div className="dashboard-background-container">
-      <div className="auth-navbar">
-          <div className="container">
-              <div className="auth-navbar-brand">
+    <div className="background-container">
+      <div className="navbar">
+              <div className="navbar-brand">
                   <img src={cookbook} alt="Cook Book Picture" style={{ width: '40px', height: 'auto' }} />
                   <h3>Recipe Book</h3>
               </div>
-              <div className="auth-navbar-links">
-                <Link to={`/home/${id}`} className="auth-navbar-link" >Home Page</Link>
-                <Link to="/" className="auth-navbar-link" onClick={logout}>Logout</Link>
+              <div className="navbar-links">
+                <Link to={`/home/${id}`} className="navbar-link" >Home Page</Link>
+                <Link to="/" className="navbar-link" onClick={logout}>Logout</Link>
               </div>
-          </div>
       </div>
           <div className='d-flex justify-content-start align-items-center mt-2'>
                   <img

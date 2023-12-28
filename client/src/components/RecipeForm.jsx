@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Link, useParams } from 'react-router-dom'
 import DropzoneComponent from './DropzoneComponent';
-import '../components/HomePage/homepagestyles.css'
+import '../components/HomePage/newhomepagestyles.css'
 import kitchenBackground from '../assets/images/kitchenbackground.jpg'
 import cookbook from '../assets/images/cookbook.png'
 import gordonPassion from '../assets/images/gordonpassion.gif'
@@ -89,18 +89,16 @@ const RecipeForm = () => {
     };
 
   return (
-    <div className="dashboard-background-container">
-            <div className="auth-navbar">
-                <div className="container">
-                <div className="auth-navbar-brand">
+    <div className="background-container">
+            <div className="navbar">
+                <div className="navbar-brand">
                     <img src={cookbook} alt="Cook Book Picture" style={{ width: '40px', height: 'auto' }} />
                     <h3>Recipe Book</h3>
                 </div>
-                <div className="auth-navbar-links">
-                    <Link to={`/api/${id}`} className="auth-navbar-link">Search for Recipe</Link>
-                    <Link to={`/home/${id}`} className="auth-navbar-link" >Home Page</Link>
-                    <Link to="/" className="auth-navbar-link" onClick={logout}>Logout</Link>
-                </div>
+                <div className="navbar-links">
+                    <Link to={`/api/${id}`} className="navbar-link">Search for Recipe</Link>
+                    <Link to={`/home/${id}`} className="navbar-link" >Home Page</Link>
+                    <Link to="/" className="navbar-link" onClick={logout}>Logout</Link>
                 </div>
             </div>
             <div className='d-flex justify-content-center mt-2'>

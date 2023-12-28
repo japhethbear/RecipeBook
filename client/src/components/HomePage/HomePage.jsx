@@ -1,31 +1,30 @@
 import React from 'react';
 import About from '../About/About';
-import kitchenBackground from '../../assets/images/kitchenbackground.jpg';
 
 import '../About/aboutstyles.css'
-import './homepagestyles.css'
+import './newhomepagestyles.css'
 import { Link } from 'react-router-dom'
 import cookbook from '../../assets/images/cookbook.png'
 
 const HomePage = () => {
   return (
-    <div className="auth-background-container">
-      <div className="auth-navbar">
-        <div className="container">
-          <div className="auth-navbar-brand">
-            <img src={cookbook} alt="Cook Book Picture" style={{ width: '40px', height: 'auto' }} />
+    <div className="background-container">
+      <div className='page-content'>
+        <div className="navbar">
+          <div className="navbar-brand">
+            <img src={cookbook} alt="Cook Book" style={{ width: '40px', height: 'auto' }} />
             <h3>Recipe Book</h3>
           </div>
-          <div className="auth-navbar-links">
-            <Link to="/appdemo" className="auth-navbar-link">Demo</Link>
-            <Link to="../registerandlogin" className="auth-navbar-link">Log In</Link>
+          <div className="navbar-links">
+            <Link to="/appdemo" className="navbar-link">Demo</Link>
+            <Link to="../registerandlogin" className="navbar-link">Log In</Link>
           </div>
         </div>
-      </div>
-      <div className="auth-content">
-        <div id="about" className="section">
-          <About />
-        </div>
+        <div className="component-content">
+          <div id="about" className="section">
+            <About />
+          </div>
+        </div> 
       </div>
     </div>
   );

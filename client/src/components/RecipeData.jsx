@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import axios from 'axios';
-import '../components/HomePage/homepagestyles.css'
+import '../components/HomePage/newhomepagestyles.css'
 import kitchenBackground from '../assets/images/kitchenbackground.jpg'
 import cookbook from '../assets/images/cookbook.png'
 import gordonDelicious from '../assets/images/gordondelicious.gif'
@@ -106,18 +106,16 @@ const EditRecipe = () => {
 
  
   return (
-    <div className="dashboard-background-container" style={{ backgroundImage: `url(${kitchenBackground})` }}>
-        <div className="auth-navbar">
-            <div className="container">
-                <div className="auth-navbar-brand">
+    <div className="background-container" style={{ backgroundImage: `url(${kitchenBackground})` }}>
+        <div className="navbar">
+                <div className="navbar-brand">
                     <img src={cookbook} alt="Cook Book Picture" style={{ width: '40px', height: 'auto' }} />
                     <h3>Recipe Book</h3>
                 </div>
-                <div className="auth-navbar-links">
-                    <Link to={`/home/${userId}`} className="auth-navbar-link" >Home Page</Link>
-                    <Link to="/" className="auth-navbar-link" onClick={logout}>Logout</Link>
+                <div className="navbar-links">
+                    <Link to={`/home/${userId}`} className="navbar-link" >Home Page</Link>
+                    <Link to="/" className="navbar-link" onClick={logout}>Logout</Link>
                 </div>
-            </div>
         </div>
         <div className='d-flex justify-content-around mt-3'>
             <h1>{recipe.recipeName || 'Recipe Name'}</h1>
