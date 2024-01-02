@@ -31,7 +31,7 @@ const EditRecipe = () => {
       }, [userId]);
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/recipes')
+        axios.get(`http://localhost:8000/api/recipes/all/${userId}`)
             .then(res => {
                 console.log(res.data)
                 setRecipes(res.data.allRecipes)})

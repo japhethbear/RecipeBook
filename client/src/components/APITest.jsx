@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import RecipeForm from './RecipeForm';
 import '../components/HomePage/newhomepagestyles.css'
-import kitchenBackground from '../assets/images/kitchenbackground.jpg'
 import cookbook from '../assets/images/cookbook.png'
 import gordonFlavors from '../assets/images/gordonflavors.gif'
 
@@ -14,7 +13,7 @@ const ApiTest = () => {
 
   const [ingredients, setIngredients] = useState([]);
   const [number, setNumber] = useState(1);
-  const [multiplier, setMultiplier] = useState(1); // New state for serving size multiplier
+  const [multiplier, setMultiplier] = useState(1);
 
   const [recipes, setRecipes] = useState([]);
   const [currentIngredient, setCurrentIngredient] = useState('');

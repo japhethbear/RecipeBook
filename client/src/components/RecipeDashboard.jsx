@@ -1,34 +1,37 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import { useNavigate, Link, useParams } from 'react-router-dom';
+import { useNavigate, Link, useParams, unstable_useBlocker } from 'react-router-dom';
 import '../components/HomePage/newhomepagestyles.css'
 import cookbook from '../assets/images/cookbook.png'
 import excitedRamsey from '../assets/images/excitedramsey.gif'
 
 
 const RecipeDashboard = () => {
-    const [recipes, setRecipes] = useState([])
+    const [recipes, setRecipes] = useState([]);
     const navigate = useNavigate();
     const [user, setUser] = useState({});
     const { id } = useParams();
     const [selectedMeal, setSelectedMeal] = useState('');
+    const [userRecipes, setUserRecipes] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/recipes')
-            .then(res => {
-                console.log(res.data)
-                setRecipes(res.data.allRecipes)})
-            .catch(err => console.log(err))
-    }, [])
-
-    useEffect(() => {
-        axios.get(`http://localhost:8000/api/users/${id}`)
+      axios.get(`http://localhost:8000/api/recipes/all/${id}`)
           .then(res => {
-            console.log(res.data)
-            setUser(res.data.user)}
-            )
-          .catch(err => console.log(err));
-      }, [id]);
+              console.log(res.data)
+              const filteredRecipes = res.data.allRecipes.filter(recipe => recipe.user === id);
+              setRecipes(filteredRecipes)})
+          .catch(err => console.log(err))
+  }, [])
+
+
+  useEffect(() => {
+    axios.get(`http://localhost:8000/api/users/${id}`)
+      .then(res => {
+        console.log(res.data)
+        setUser(res.data.user)}
+        )
+      .catch(err => console.log(err));
+  }, [id]);
 
     const navigateToRecipeForm = () => {
         navigate(`/recipe/new/${id}`)

@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const axios = require('axios');
 const { load } = require('cheerio');
 const { MongoClient } = require('mongodb');
+const authenticateUser = require('./middleware/authorizationMiddleware');
 
 app.use(cors({
     credentials: true,
@@ -73,6 +74,16 @@ const websiteConfigs = [
       instructions: '#recipe__steps-content_1-0 ol li p.mntl-sc-block-html'
     }
   },
+  {
+    name: 'The Kitchn',
+    domain: 'www.thekitchn.com',
+    selectors: {
+      title: 'h2.jsx-2125538254.Recipe__title',
+      ingredients: 'section.jsx-2125538254.Recipe__ingredientsSection ul.Recipe__ingredients li.Recipe__ingredient',
+      instructions: 'section.jsx-2125538254.Recipe__instructionsSection ol.Recipe__instructions li.Recipe__instructionStep div.Recipe__instructionStepContent span p',
+    }
+  }
+  
 ];
 
 // API route to handle recipe scraping
@@ -81,7 +92,11 @@ app.post('/scrape-recipe', async (req, res) => {
     const { url } = req.body;
 
     // Fetch the HTML content of the provided URL
-    const response = await axios.get(url);
+    const response = await axios.get(url, {
+      headers: {
+        'User-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36', 
+      }
+    });
     const html = response.data;
 
     // Use Cheerio to parse the HTML content

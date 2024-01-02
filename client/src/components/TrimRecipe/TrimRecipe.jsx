@@ -120,6 +120,7 @@ function TrimRecipe() {
         <ul style={{ fontSize: '20px', fontWeight: '' }}>
           <li className='recipe-background'>Farmhouse on Boone</li>
           <li className='recipe-background'>All Recipes</li>
+          <li className='recipe-background'>The Kitchn</li>
         </ul>
         <p className='recipe-background' style={{ fontSize: '18px', fontWeight: '' }}>If you'd like to see more recipes added, please send your requests to j.bearessentials@gmail.com</p>
 

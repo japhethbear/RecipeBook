@@ -2,19 +2,10 @@ const Recipe = require('../models/recipe.model');
 
 // Find All Recipes
 module.exports.findAllRecipes= (req, res) => {
-    Recipe.find({}, (err, recipes) => {
-        if (err) {
-          // Handle errors
-          return res.status(500).json({ error: "Internal Server Error" });
-        }
-    
-        // Filter recipes to only include those created by the authenticated user
-        const userRecipes = recipes.filter(recipe => recipe.user.toString() === req.user.id);
-    
-        // Return the filtered recipes
-        return res.status(200).json(userRecipes);
-      });
-    }
+  Recipe.find()
+      .then(allRecipes=> res.json({ allRecipes}))
+      .catch(err => res.json({ message: 'Something went wrong', error: err}));
+}
 
 // Find One Recipe
 module.exports.findOneRecipe = (req, res) => {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const RegisterForm = () => {
@@ -10,6 +10,9 @@ const RegisterForm = () => {
         password: "",
         confirmPassword: ""
     })
+
+
+
 
     const navigate = useNavigate();
 
@@ -27,7 +30,7 @@ const RegisterForm = () => {
         axios.post('http://localhost:8000/api/users/register', userInfo, {withCredentials: true})
             .then(res => {
                 console.log(res)
-                navigate('/home')
+                navigate(`/home/${res.data.user._id}`)
             })
             .catch(err => {
                 const errorResponse = err.response.data.errors;
