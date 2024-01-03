@@ -6,7 +6,6 @@ const cookieParser = require('cookie-parser');
 const axios = require('axios');
 const { load } = require('cheerio');
 const { MongoClient } = require('mongodb');
-const authenticateUser = require('./middleware/authorizationMiddleware');
 
 app.use(cors({
     credentials: true,
