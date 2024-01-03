@@ -1,3 +1,4 @@
 #jws token and api key
 
 .env
+node_modules
