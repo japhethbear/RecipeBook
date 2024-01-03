@@ -17,6 +17,7 @@ const RegLogin = () => {
             <Link to="/" className="navbar-link">Home</Link>
           </div>
       </div>
+      <h2 style={{margin: '10px'}}>Please use a fake email and a fake password for testing purposes. 123456789 is adequate.</h2>
       <div className="auth-content">
         <div className="auth-form-container with-background">
           <LoginForm />

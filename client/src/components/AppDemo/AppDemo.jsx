@@ -2,9 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import LoginVideo from '../../assets/videos/LoginVideo.mp4';
-import YourRecipes from '../../assets/videos/YourRecipes.mp4';
-import AddRecipe from '../../assets/videos/AddRecipe.mp4';
 import cookbook from '../../assets/images/cookbook.png';
 import './appdemostyles.css'
 import '../../components/HomePage/newhomepagestyles.css'
@@ -45,6 +42,7 @@ const AppDemo = () => {
           </div>
         </div>
       </div>
+
     </div>
   );
 };

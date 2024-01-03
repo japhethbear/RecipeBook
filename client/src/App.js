@@ -10,7 +10,7 @@ import ViewRecipe from './components/ViewRecipe';
 import APITest from './components/APITest';
 import RegLogin from './components/RegLogin/RegLogin';
 import AppDemo from './components/AppDemo/AppDemo';
-import TrimRecipe from './components/TrimRecipe/TrimRecipe'
+import TrimRecipe from './components/TrimRecipe/TrimRecipe';
 
 function App() {
 
