@@ -1,0 +1,5 @@
+{
+    "appService.defaultWebAppToDeploy": "undefined/subscriptions/911c3828-cc0e-4b34-8845-82be81052701/resourceGroups/appsvc_linux_centralus_basic/providers/Microsoft.Web/sites/RecipeBookTwo",
+    "appService.deploySubpath": "."
+}
+
